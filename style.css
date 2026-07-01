@@ -107,11 +107,26 @@ a:hover {
 }
 
 .hero-portrait {
+  position: relative;
   margin: 0;
   width: min(640px, 88vw);
   aspect-ratio: 4 / 3;
   overflow: hidden;
   line-height: 0;
+}
+
+.hero-portrait::before {
+  content: "";
+  position: absolute;
+  inset: 6% 0 0;
+  background: radial-gradient(
+    ellipse 78% 68% at 50% 40%,
+    rgba(255, 237, 213, 0.9) 0%,
+    rgba(255, 247, 237, 0.45) 42%,
+    transparent 72%
+  );
+  pointer-events: none;
+  z-index: 0;
 }
 
 .avatar-img {
@@ -121,29 +136,23 @@ a:hover {
 }
 
 .avatar-img-hero {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: 100%;
   max-height: none;
   object-fit: cover;
   object-position: center 14%;
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 52%,
-    rgba(0, 0, 0, 0.75) 72%,
-    rgba(0, 0, 0, 0.2) 88%,
-    transparent 98%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    #000 0%,
-    #000 52%,
-    rgba(0, 0, 0, 0.75) 72%,
-    rgba(0, 0, 0, 0.2) 88%,
-    transparent 98%
-  );
-  filter: drop-shadow(0 16px 28px rgba(24, 24, 27, 0.16))
-          drop-shadow(0 4px 12px rgba(234, 88, 12, 0.1));
+  -webkit-mask-image:
+    linear-gradient(to bottom, #000 0%, #000 36%, rgba(0, 0, 0, 0.88) 54%, rgba(0, 0, 0, 0.45) 76%, transparent 100%),
+    radial-gradient(ellipse 90% 84% at 50% 38%, #000 44%, rgba(0, 0, 0, 0.55) 72%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, #000 0%, #000 36%, rgba(0, 0, 0, 0.88) 54%, rgba(0, 0, 0, 0.45) 76%, transparent 100%),
+    radial-gradient(ellipse 90% 84% at 50% 38%, #000 44%, rgba(0, 0, 0, 0.55) 72%, transparent 100%);
+  mask-composite: intersect;
+  filter: drop-shadow(0 22px 40px rgba(234, 88, 12, 0.1))
+          drop-shadow(0 8px 24px rgba(255, 237, 213, 0.55));
 }
 
 .hero-body {
@@ -159,7 +168,20 @@ a:hover {
 }
 
 .avatar-img-about {
-  filter: drop-shadow(0 12px 24px rgba(24, 24, 27, 0.14));
+  -webkit-mask-image: radial-gradient(
+    ellipse 94% 90% at 50% 44%,
+    #000 52%,
+    rgba(0, 0, 0, 0.55) 78%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 94% 90% at 50% 44%,
+    #000 52%,
+    rgba(0, 0, 0, 0.55) 78%,
+    transparent 100%
+  );
+  filter: drop-shadow(0 18px 34px rgba(234, 88, 12, 0.08))
+          drop-shadow(0 6px 18px rgba(255, 237, 213, 0.45));
 }
 
 .hero-label {
@@ -276,13 +298,30 @@ a:hover {
 }
 
 .about-avatar {
+  position: relative;
   margin: 0;
   width: 100%;
   max-width: 200px;
   justify-self: center;
 }
 
+.about-avatar::before {
+  content: "";
+  position: absolute;
+  inset: -4% -8% 12%;
+  background: radial-gradient(
+    ellipse 88% 82% at 50% 46%,
+    rgba(255, 237, 213, 0.75) 0%,
+    rgba(255, 247, 237, 0.35) 50%,
+    transparent 78%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
 .about-avatar .avatar-img-about {
+  position: relative;
+  z-index: 1;
   width: 100%;
   height: auto;
 }
