@@ -200,6 +200,12 @@ a:hover {
   margin-bottom: 2rem;
 }
 
+.hero-desc ruby rt {
+  font-size: 0.55em;
+  color: var(--orange-500);
+  font-weight: 500;
+}
+
 .hero-hashtag {
   color: var(--orange-600);
   font-weight: 500;
