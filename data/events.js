@@ -28,20 +28,32 @@ var EVENTS = [
     return;
   }
 
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
   list.innerHTML = items.map(function (e) {
-    var display = e.date ? e.date.replace("-", ".") : "";
-    var datePart = e.date
-      ? "<time class=\"event-date\" datetime=\"" + e.date + "\">" + display + "</time>"
+    var rawDate = e.date || "";
+    var display = escapeHtml(rawDate.replace("-", "."));
+    var dateAttr = escapeHtml(rawDate);
+    var title = escapeHtml(e.title);
+    var desc = e.desc ? escapeHtml(e.desc) : "";
+    var label = e.label ? escapeHtml(e.label) : "";
+
+    var datePart = rawDate
+      ? "<time class=\"event-date\" datetime=\"" + dateAttr + "\">" + display + "</time>"
       : "";
-    var badge = e.label
-      ? "<span class=\"event-badge event-badge-online\">" + e.label + "</span>"
+    var badge = label
+      ? "<span class=\"event-badge event-badge-online\">" + label + "</span>"
       : "";
     return [
       "<li class=\"event-item\">",
       "  <div class=\"event-meta\">" + datePart + badge + "</div>",
       "  <div class=\"event-body\">",
-      "    <h3 class=\"event-title\">" + e.title + "</h3>",
-      e.desc ? "    <p class=\"event-desc\">" + e.desc + "</p>" : "",
+      "    <h3 class=\"event-title\">" + title + "</h3>",
+      desc ? "    <p class=\"event-desc\">" + desc + "</p>" : "",
       "  </div>",
       "</li>"
     ].join("\n");

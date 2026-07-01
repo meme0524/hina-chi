@@ -16,8 +16,16 @@ var NEWS = [
   var items = NEWS.filter(function (n) { return n && n.text; });
   if (items.length === 0) return;
 
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
   list.innerHTML = items.map(function (n) {
-    var d = n.date ? "<time class=\"news-date\" datetime=\"" + n.date + "\">" + n.date + "</time>" : "";
-    return "<li class=\"news-item\">" + d + "<span class=\"news-text\">" + n.text + "</span></li>";
+    var date = escapeHtml(n.date || "");
+    var text = escapeHtml(n.text);
+    var d = n.date ? "<time class=\"news-date\" datetime=\"" + date + "\">" + date + "</time>" : "";
+    return "<li class=\"news-item\">" + d + "<span class=\"news-text\">" + text + "</span></li>";
   }).join("");
 })();
