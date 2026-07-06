@@ -26,7 +26,7 @@ TEMPLATE   = Path(__file__).resolve().parent / "post-template.html"
 OUT_DIR    = BLOG_DIR / "p"
 CNAME_FILE = ROOT / "CNAME"
 
-DEFAULT_IMAGE_PATH = "image/hinachi_001.png"
+DEFAULT_IMAGE_PATH = "image/hinachi_ogp.png"
 DEFAULT_DESC       = "ひなーちのブログ記事です。"
 
 
