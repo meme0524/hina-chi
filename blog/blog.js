@@ -18,45 +18,17 @@
     return typeof p === "string" && /^[A-Za-z0-9_./-]+$/.test(p) && p.indexOf("..") === -1;
   }
 
-  var items = (typeof POSTS !== "undefined" ? POSTS : []).filter(function (p) { return p && p.title; });
-
-  if (items.length === 0) {
-    list.innerHTML = "<li class=\"blog-empty\">まだ記事がありません。</li>";
-    return;
+  // "posts/2026-07-05-uta-fes.md" -> "2026-07-05-uta-fes"（個別ページの permalink 用）
+  function slugFromFile(file) {
+    if (!file) return "";
+    var name = file.split("/").pop();
+    return name.replace(/\.md$/i, "");
   }
 
   var currentTag    = null; // null = すべて
   var renderedCount = PAGE_SIZE;
   var firstRender   = true;
-
-  // 全タグ収集（重複除去・出現順）
-  var allTags = [];
-  items.forEach(function (p) {
-    (p.tags || []).forEach(function (t) {
-      if (allTags.indexOf(t) === -1) allTags.push(t);
-    });
-  });
-
-  // タグフィルターボタン生成
-  if (allTags.length > 0) {
-    var btns = ["すべて"].concat(allTags).map(function (tag) {
-      var btn = document.createElement("button");
-      btn.className = "tag-btn";
-      btn.textContent = tag;
-      btn.setAttribute("aria-pressed", tag === "すべて" ? "true" : "false");
-      btn.addEventListener("click", function () {
-        document.querySelectorAll(".tag-btn").forEach(function (b) {
-          b.setAttribute("aria-pressed", "false");
-        });
-        btn.setAttribute("aria-pressed", "true");
-        currentTag    = (tag === "すべて") ? null : tag;
-        renderedCount = PAGE_SIZE;
-        render();
-      });
-      return btn;
-    });
-    btns.forEach(function (b) { filterWrap.appendChild(b); });
-  }
+  var items         = [];
 
   function getFiltered() {
     if (!currentTag) return items;
@@ -73,9 +45,14 @@
         }).join("") + "</div>"
       : "";
 
-    var dataFile = escapeHtml(p.file || "");
-    var title    = escapeHtml(p.title);
-    var date     = escapeHtml(p.date || "");
+    var dataFile   = escapeHtml(p.file || "");
+    var title      = escapeHtml(p.title);
+    var date       = escapeHtml(p.date || "");
+    var permalink  = isSafePath(p.file) ? "p/" + escapeHtml(slugFromFile(p.file)) + ".html" : "";
+
+    var permalinkHtml = permalink
+      ? "<a class=\"post-permalink\" href=\"" + permalink + "\" title=\"この記事の個別ページを開く（SNS共有用リンク）\">🔗</a>"
+      : "";
 
     return [
       "<li class=\"post-item\" data-file=\"" + dataFile + "\">",
@@ -83,6 +60,7 @@
       "    <summary class=\"post-toggle\">",
       "      <span class=\"post-date\">" + date + "</span>",
       "      <span class=\"post-title\">" + title + "</span>",
+      permalinkHtml,
       "      <span class=\"post-arrow\">▶</span>",
       "    </summary>",
       "    <div class=\"post-body\">" + tagsHtml + "<div class=\"post-md\"><p class=\"post-loading\">読み込み中…</p></div></div>",
@@ -124,6 +102,13 @@
     render();
   });
 
+  // パーマリンクをクリックしたときはアコーディオンの開閉ではなく個別ページへ遷移させる
+  list.addEventListener("click", function (e) {
+    if (e.target.closest && e.target.closest(".post-permalink")) {
+      e.stopPropagation();
+    }
+  }, true);
+
   // details を開いたときに .md を fetch してレンダリング（本文は開くまで読み込まない）
   list.addEventListener("toggle", function (e) {
     var details = e.target;
@@ -163,5 +148,51 @@
       });
   }, true);
 
-  render();
+  fetch("posts.json")
+    .then(function (res) {
+      if (!res.ok) throw new Error(res.status);
+      return res.json();
+    })
+    .then(function (data) {
+      items = (Array.isArray(data) ? data : []).filter(function (p) { return p && p.title; });
+
+      if (items.length === 0) {
+        list.innerHTML = "<li class=\"blog-empty\">まだ記事がありません。</li>";
+        return;
+      }
+
+      // 全タグ収集（重複除去・出現順）
+      var allTags = [];
+      items.forEach(function (p) {
+        (p.tags || []).forEach(function (t) {
+          if (allTags.indexOf(t) === -1) allTags.push(t);
+        });
+      });
+
+      // タグフィルターボタン生成
+      if (allTags.length > 0) {
+        var btns = ["すべて"].concat(allTags).map(function (tag) {
+          var btn = document.createElement("button");
+          btn.className = "tag-btn";
+          btn.textContent = tag;
+          btn.setAttribute("aria-pressed", tag === "すべて" ? "true" : "false");
+          btn.addEventListener("click", function () {
+            document.querySelectorAll(".tag-btn").forEach(function (b) {
+              b.setAttribute("aria-pressed", "false");
+            });
+            btn.setAttribute("aria-pressed", "true");
+            currentTag    = (tag === "すべて") ? null : tag;
+            renderedCount = PAGE_SIZE;
+            render();
+          });
+          return btn;
+        });
+        btns.forEach(function (b) { filterWrap.appendChild(b); });
+      }
+
+      render();
+    })
+    .catch(function () {
+      list.innerHTML = "<li class=\"blog-empty\">記事一覧の読み込みに失敗しました。</li>";
+    });
 })();
