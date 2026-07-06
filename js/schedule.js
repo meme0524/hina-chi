@@ -1,7 +1,6 @@
 (function () {
-  var MAIN_START = 21 * 60;
-  var MAIN_END = 22 * 60;
-  var GUERRILLA_START = 23 * 60 + 30;
+  var WEEKEND_START = 21 * 60;
+  var WEEKEND_END = 24 * 60;
 
   function getJSTDate() {
     return new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" }));
@@ -11,14 +10,15 @@
     return String(n).padStart(2, "0");
   }
 
-  function formatTime(h, m) {
-    return pad(h) + ":" + pad(m);
-  }
-
   function addDays(date, days) {
     var next = new Date(date);
     next.setDate(next.getDate() + days);
     return next;
+  }
+
+  function isWeekend(date) {
+    var d = date.getDay();
+    return d === 0 || d === 6;
   }
 
   function dayLabel(date, now) {
@@ -42,39 +42,41 @@
     return (date.getMonth() + 1) + "月" + date.getDate() + "日";
   }
 
+  function nextWeekendDate(now) {
+    for (var i = 0; i <= 7; i++) {
+      var d = addDays(now, i);
+      if (isWeekend(d)) {
+        if (i === 0) {
+          var minutes = now.getHours() * 60 + now.getMinutes();
+          if (minutes >= WEEKEND_END) continue;
+        }
+        return d;
+      }
+    }
+    return now;
+  }
+
   function getNextStreamMessage(now) {
     var minutes = now.getHours() * 60 + now.getMinutes();
+    var weekend = isWeekend(now);
 
-    if (minutes >= MAIN_START && minutes < MAIN_END) {
+    if (weekend && minutes >= WEEKEND_START && minutes < WEEKEND_END) {
       return {
-        text: "いまメイン枠の時間帯です（21:00〜22:00）。REALITY をチェック！",
+        text: "いま週末枠の時間帯です（21:00〜）。REALITY をチェック！",
         live: true
       };
     }
 
-    if (minutes >= GUERRILLA_START || minutes < MAIN_START) {
-      if (minutes >= GUERRILLA_START) {
-        return {
-          text: "ゲリラ枠の時間帯です（23:30〜・不定期）。REALITY または X をチェック！",
-          live: true
-        };
-      }
-
+    if (!weekend) {
       return {
-        text: "次のメイン枠：" + dayLabel(now, now) + " 21:00（REALITY）",
+        text: "平日は不定期配信。告知は X（@Hina_nachi）をチェック！",
         live: false
       };
     }
 
-    if (minutes >= MAIN_END && minutes < GUERRILLA_START) {
-      return {
-        text: "次のゲリラ枠：" + dayLabel(now, now) + " 23:30〜（不定期）／メインは明日 21:00",
-        live: false
-      };
-    }
-
+    var target = nextWeekendDate(now);
     return {
-      text: "次のメイン枠：" + dayLabel(now, now) + " 21:00（REALITY）",
+      text: "次の週末枠：" + dayLabel(target, now) + " 21:00〜（REALITY）",
       live: false
     };
   }
