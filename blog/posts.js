@@ -9,7 +9,7 @@ var POSTS = [
     date: "2026-07-05",
     title: "歌フェスに参加しました！",
     tags: ["配信"],
-    file: "posts/2026-07-05-歌フェス.md",
+    file: "posts/2026-07-05-uta-fes.md",
   },
 
   {
