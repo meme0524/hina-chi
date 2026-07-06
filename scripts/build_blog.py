@@ -96,7 +96,8 @@ def main():
             "DATE": html.escape(date),
             "DATE_ISO": html.escape(date_iso),
             "TAGS_HTML": build_tags_html(tags),
-            "FILE": html.escape("../" + file_rel),
+            # ルート相対パスにする（".." を含む相対パスは post.js の安全チェックで弾かれるため）
+            "FILE": html.escape("/blog/" + file_rel),
         }
 
         out_path.write_text(render(template_text, values), encoding="utf-8")
