@@ -194,6 +194,36 @@ details[open] .post-arrow {
   display: none;
 }
 
+/* ===== Load more ===== */
+.load-more-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.load-more-btn {
+  all: unset;
+  cursor: pointer;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--orange-600);
+  border: 1px solid var(--orange-400);
+  padding: 0.625rem 2rem;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.load-more-btn:hover {
+  background: var(--orange-500);
+  border-color: var(--orange-500);
+  color: var(--white);
+}
+
+.load-more-btn[hidden] {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .post-toggle {
     grid-template-columns: 1fr auto;
