@@ -77,6 +77,10 @@
   font-size: 1rem;
   font-weight: 700;
   color: var(--gray-900);
+  line-break: strict;
+  word-break: normal;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
   transition: color 0.15s;
 }
 
@@ -122,6 +126,13 @@ details[open] .post-arrow {
 }
 
 /* ===== Markdown content ===== */
+.post-md {
+  line-break: strict;
+  word-break: normal;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+}
+
 .post-md h2 {
   font-size: 1.0625rem;
   font-weight: 700;
@@ -244,6 +255,10 @@ details[open] .post-arrow {
   font-weight: 700;
   color: var(--gray-900);
   line-height: 1.4;
+  line-break: strict;
+  word-break: normal;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
   margin-bottom: 1.25rem;
   padding-bottom: 1.25rem;
   border-bottom: 1px solid var(--orange-100);
@@ -281,32 +296,31 @@ details[open] .post-arrow {
 
 @media (max-width: 600px) {
   .post-toggle {
-    grid-template-columns: 1fr auto auto;
-    grid-template-rows: auto auto;
-    gap: 0.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.375rem 0.75rem;
+    padding: 1rem 0;
   }
 
   .post-date {
-    grid-column: 1;
-    grid-row: 1;
+    flex: 1 1 auto;
     font-size: 0.75rem;
   }
 
-  .post-permalink {
-    grid-column: 2;
-    grid-row: 1 / 3;
-    align-self: center;
-  }
-
+  .post-permalink,
   .post-arrow {
-    grid-column: 3;
-    grid-row: 1 / 3;
-    align-self: center;
+    flex-shrink: 0;
   }
 
   .post-title {
-    grid-column: 1;
-    grid-row: 2;
+    flex: 1 1 100%;
     font-size: 0.9375rem;
+    line-height: 1.55;
+  }
+
+  /* Markdown の行末スペース改行（<br>）を無視し、画面幅に合わせて自然に折り返す */
+  .post-md br {
+    display: none;
   }
 }
