@@ -2,7 +2,7 @@
 """
 ブラウザタブ用の favicon / Apple Touch Icon を生成する。
 
-OGP 画像（hinachi_ogp.png）からキャラクターの顔周りを切り出し、
+アイコン用画像（IMG_1387.png）から
 32x32（タブアイコン）と 180x180（スマホのホーム画面）を作る。
 
 外部ライブラリは使わず、make_ogp_image.py と同じ PNG 処理を流用する。
@@ -16,14 +16,9 @@ import zlib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC_IMAGE = ROOT / "image" / "hinachi_ogp.png"
+SRC_IMAGE = ROOT / "image" / "IMG_1387.png"
 OUT_32 = ROOT / "image" / "favicon-32.png"
 OUT_180 = ROOT / "image" / "apple-touch-icon.png"
-
-# OGP 上の顔まわり（1200x630 基準）
-CROP_X = 300
-CROP_Y = 10
-CROP_SIZE = 420
 
 
 def read_png_rgba(path):
@@ -205,10 +200,13 @@ def save_icon(path, rgba_pixels, size):
 
 def main():
     src_w, src_h, src_pixels = read_png_rgba(SRC_IMAGE)
-    crop = crop_square(src_w, src_h, src_pixels, CROP_X, CROP_Y, CROP_SIZE)
+    crop_size = min(src_w, src_h)
+    x = (src_w - crop_size) // 2
+    y = (src_h - crop_size) // 2
+    crop = crop_square(src_w, src_h, src_pixels, x, y, crop_size)
 
-    save_icon(OUT_32, resize_rgba(crop, CROP_SIZE, 32), 32)
-    save_icon(OUT_180, resize_rgba(crop, CROP_SIZE, 180), 180)
+    save_icon(OUT_32, resize_rgba(crop, crop_size, 32), 32)
+    save_icon(OUT_180, resize_rgba(crop, crop_size, 180), 180)
 
     print("生成しました:")
     print(" ", OUT_32.relative_to(ROOT))
