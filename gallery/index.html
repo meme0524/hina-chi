@@ -39,6 +39,11 @@
 
     <section class="gallery-page-section">
       <div class="container">
+        <div id="gallery-filter" class="gallery-filter" role="group" aria-label="ギャラリーの分類">
+          <button type="button" class="gallery-filter-btn" data-filter="all" aria-pressed="true">すべて</button>
+          <button type="button" class="gallery-filter-btn" data-filter="fanart" aria-pressed="false">Fan Art</button>
+          <button type="button" class="gallery-filter-btn" data-filter="screenshot" aria-pressed="false">Screenshot</button>
+        </div>
         <div id="gallery-grid" class="gallery-grid gallery-page-grid" data-gallery-mode="all" data-gallery-base="../">
           <p class="gallery-empty">画像は準備中です。</p>
         </div>

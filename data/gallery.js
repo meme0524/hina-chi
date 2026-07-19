@@ -16,7 +16,8 @@ var GALLERY = [
     src: "image/gallery/fanart/003-mio-sakuya.png",
     alt: "マフラー姿のひなーちのチビキャラファンアート",
     type: "fanart",
-    caption: "澪海 桜弥 さん"
+    caption: "澪海 桜弥 さん",
+    url: "https://x.com/HFmiomi_REALITY"
   },
   {
     src: "image/gallery/screenshots/001-plushie-rocking-chair.png",
