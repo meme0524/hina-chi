@@ -1,0 +1,40 @@
+/* ===== Gallery page ===== */
+.gallery-hero {
+  background: linear-gradient(180deg, var(--orange-100) 0%, var(--orange-50) 60%, var(--white) 100%);
+  padding: 3rem 0 2.5rem;
+  border-bottom: 1px solid var(--orange-100);
+}
+
+.gallery-hero-label {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange-600);
+  background: var(--white);
+  border: 1px solid var(--orange-200);
+  border-left: 3px solid var(--orange-500);
+  padding: 0.375rem 0.875rem;
+  margin-bottom: 0.875rem;
+}
+
+.gallery-hero-title {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 0.5rem;
+}
+
+.gallery-hero-desc {
+  font-size: 0.9375rem;
+  color: var(--gray-500);
+}
+
+.gallery-page-section {
+  padding: 3rem 0 4rem;
+}
+
+.gallery-page-grid {
+  margin-bottom: 0;
+}
