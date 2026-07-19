@@ -28,7 +28,7 @@ var GALLERY = [
     src: "image/gallery/screenshots/002-chapel-outfit.png",
     alt: "チャペル衣装で杖を持っている配信スクショ",
     type: "screenshot",
-    caption: "チャペルコーデ"
+    caption: "チャペルにあらわれる天使ーち"
   },
   {
     src: "image/gallery/fanart/001-hapiba.png",
