@@ -1,4 +1,6 @@
 (function () {
+  var MAX_NEWS = 4;
+
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
@@ -20,7 +22,7 @@
       return;
     }
 
-    list.innerHTML = items.map(function (n) {
+    list.innerHTML = items.slice(0, MAX_NEWS).map(function (n) {
       var date = escapeHtml(n.date || "");
       var text = escapeHtml(n.text);
       var d = n.date ? "<time class=\"news-date\" datetime=\"" + date + "\">" + date + "</time>" : "";
