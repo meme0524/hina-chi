@@ -13,6 +13,12 @@
 // ======================================
 var GALLERY = [
   {
+    src: "image/gallery/screenshots/003-towers.png",
+    alt: "イベントの応援ありがとうございました！ ギフトタワーに囲まれて手を合わせている配信スクショ",
+    type: "screenshot",
+    caption: "ギフトタワーに囲まれて"
+  },
+  {
     src: "image/gallery/fanart/003-mio-sakuya.png",
     alt: "マフラー姿のひなーちのチビキャラファンアート",
     type: "fanart",
