@@ -15,7 +15,10 @@
   <header class="header">
     <div class="container header-inner">
       <a href="../index.html" class="logo">hina-chi</a>
-      <nav class="nav">
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="メニュー">
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+      </button>
+      <nav id="site-nav" class="nav">
         <a href="../index.html#about">About</a>
         <a href="." aria-current="page">Gallery</a>
         <a href="../index.html#schedule">Schedule</a>
@@ -62,6 +65,7 @@
     </div>
   </footer>
 
+  <script src="../js/nav.js"></script>
   <script src="../data/gallery.js"></script>
   <script src="../js/gallery.js"></script>
 </body>

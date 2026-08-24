@@ -76,6 +76,11 @@ a:hover {
   font-weight: 700;
   font-size: 1.125rem;
   color: var(--orange-600);
+  flex-shrink: 0;
+}
+
+.nav-toggle {
+  display: none;
 }
 
 .nav {
@@ -89,8 +94,120 @@ a:hover {
   color: var(--gray-700);
 }
 
-.nav a:hover {
+.nav a:hover,
+.nav a[aria-current="page"] {
   color: var(--orange-600);
+}
+
+@media (max-width: 860px) {
+  .nav-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-right: -0.5rem;
+    padding: 0;
+    border: 1px solid var(--orange-200);
+    background: var(--white);
+    color: var(--orange-600);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    font: inherit;
+  }
+
+  .nav-toggle:focus-visible {
+    outline: 2px solid var(--orange-500);
+    outline-offset: 2px;
+  }
+
+  .nav-toggle-bars,
+  .nav-toggle-bars::before,
+  .nav-toggle-bars::after {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--orange-600);
+    transition: transform 0.2s, opacity 0.2s;
+  }
+
+  .nav-toggle-bars {
+    position: relative;
+  }
+
+  .nav-toggle-bars::before,
+  .nav-toggle-bars::after {
+    content: "";
+    position: absolute;
+    left: 0;
+  }
+
+  .nav-toggle-bars::before {
+    top: -6px;
+  }
+
+  .nav-toggle-bars::after {
+    top: 6px;
+  }
+
+  .header.nav-open .nav-toggle-bars {
+    background: transparent;
+  }
+
+  .header.nav-open .nav-toggle-bars::before {
+    transform: translateY(6px) rotate(45deg);
+  }
+
+  .header.nav-open .nav-toggle-bars::after {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 101;
+    flex-direction: column;
+    gap: 0;
+    max-height: calc(100dvh - 64px);
+    overflow-y: auto;
+    padding: 0.5rem 0 0.75rem;
+    background: rgba(255, 255, 255, 0.98);
+    border-bottom: 1px solid var(--orange-100);
+    box-shadow: 0 8px 20px rgba(24, 24, 27, 0.08);
+  }
+
+  .header.nav-open .nav {
+    display: flex;
+  }
+
+  .header.nav-open::after {
+    content: "";
+    position: fixed;
+    inset: 64px 0 0 0;
+    z-index: 99;
+    background: rgba(24, 24, 27, 0.32);
+  }
+
+  .nav a {
+    display: block;
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9375rem;
+    border-left: 3px solid transparent;
+  }
+
+  .nav a:hover,
+  .nav a[aria-current="page"] {
+    background: var(--orange-50);
+    border-left-color: var(--orange-500);
+  }
+
+  body.nav-open {
+    overflow: hidden;
+  }
 }
 
 /* ===== Hero ===== */
@@ -1112,14 +1229,6 @@ body.gallery-lightbox-open {
 }
 
 @media (max-width: 600px) {
-  .nav {
-    gap: 1rem;
-  }
-
-  .nav a {
-    font-size: 0.8125rem;
-  }
-
   .hero {
     padding: 0 0 3.5rem;
   }

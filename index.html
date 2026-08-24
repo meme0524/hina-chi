@@ -16,7 +16,10 @@
   <header class="header">
     <div class="container header-inner">
       <a href="#" class="logo">hina-chi</a>
-      <nav class="nav">
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="メニュー">
+        <span class="nav-toggle-bars" aria-hidden="true"></span>
+      </button>
+      <nav id="site-nav" class="nav">
         <a href="#about">About</a>
         <a href="gallery/">Gallery</a>
         <a href="#schedule">Schedule</a>
@@ -222,6 +225,7 @@
     </div>
   </footer>
 
+  <script src="js/nav.js"></script>
   <script src="data/schedule.js"></script>
   <script src="js/schedule.js"></script>
   <script src="data/events.js"></script>
