@@ -111,18 +111,9 @@
           <p class="next-stream-label">次の配信予定</p>
           <p id="next-stream-text" class="next-stream-text">読み込み中…</p>
         </div>
-        <div class="schedule-grid">
-          <article class="schedule-card schedule-card-guerrilla">
-            <p class="schedule-card-label">平日（月〜金）</p>
-            <p class="schedule-card-time">不定期</p>
-            <p class="schedule-card-desc">時間はその日次第。X で告知します。</p>
-          </article>
-          <article class="schedule-card schedule-card-main">
-            <p class="schedule-card-label">週末（土・日）</p>
-            <p class="schedule-card-time">21:00 〜</p>
-            <p class="schedule-card-desc">週末の定番枠。REALITY で配信します。</p>
-          </article>
-        </div>
+        <div id="schedule-regular" class="schedule-grid"></div>
+        <h3 id="schedule-specials-heading" class="schedule-subheading" hidden>近日の予定</h3>
+        <ul id="schedule-specials" class="schedule-specials"></ul>
         <p class="schedule-note">
           休みや変更がある場合は
           <a href="https://x.com/Hina_nachi" target="_blank" rel="noopener">X（@Hina_nachi）</a>
@@ -231,6 +222,7 @@
     </div>
   </footer>
 
+  <script src="data/schedule.js"></script>
   <script src="js/schedule.js"></script>
   <script src="data/events.js"></script>
   <script src="js/events.js"></script>
