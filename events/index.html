@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ひなーち（hina-chi）のイベント実績一覧。REALITYイベントなど。#ひなちぇっく">
+  <title>Events | ひなーち</title>
+  <link rel="icon" href="../image/favicon-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../image/apple-touch-icon.png" sizes="180x180">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo">hina-chi</a>
+      <nav class="nav">
+        <a href="../index.html#about">About</a>
+        <a href="../gallery/">Gallery</a>
+        <a href="../index.html#schedule">Schedule</a>
+        <a href="../news/">News</a>
+        <a href="." aria-current="page">Events</a>
+        <a href="../index.html#works">Works</a>
+        <a href="../blog/">Blog</a>
+        <a href="../index.html#links">Links</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="page-hero">
+      <div class="container">
+        <p class="page-hero-label">Events</p>
+        <h1 class="page-hero-title">イベント実績</h1>
+        <p class="page-hero-desc">これまでに参加したイベントの実績をすべて載せています。</p>
+      </div>
+    </div>
+
+    <section class="page-section">
+      <div class="container">
+        <ol id="events-list" class="events-list" data-events-mode="all"></ol>
+        <p class="events-note">※ 実績は順次更新予定です。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 ひなーち · <span class="footer-hashtag">#ひなちぇっく</span></p>
+    </div>
+  </footer>
+
+  <script src="../data/events.js"></script>
+  <script src="../js/events.js"></script>
+</body>
+</html>

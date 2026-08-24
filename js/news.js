@@ -22,7 +22,10 @@
       return;
     }
 
-    list.innerHTML = items.slice(0, MAX_NEWS).map(function (n) {
+    var mode = list.getAttribute("data-news-mode") || "all";
+    var visible = mode === "preview" ? items.slice(0, MAX_NEWS) : items;
+
+    list.innerHTML = visible.map(function (n) {
       var date = escapeHtml(n.date || "");
       var text = escapeHtml(n.text);
       var d = n.date ? "<time class=\"news-date\" datetime=\"" + date + "\">" + date + "</time>" : "";
