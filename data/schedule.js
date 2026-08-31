@@ -16,6 +16,12 @@ var SCHEDULE_REGULAR = [
 
 var SCHEDULE_SPECIALS = [
   {
+    date:"2026-09-05",
+    type:"collab",
+    title:"いろはすさん主催、自称歌下手どもの歌フェス、略して「歌下ス」",
+    desc: "歌下ス！"
+  },
+  {
     date: "2026-08-25",
     type: "collab",
     title: "小漆間マイトさん枠「低周波ビリビリ早口言葉」",
