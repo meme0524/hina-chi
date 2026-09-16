@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+<BaseLayout
+  title="Gallery"
+  description="ひなーち（hina-chi）のギャラリー。ファンアート・配信スクショなど。#ひなちぇっく"
+>
+  <main>
+    <div class="gallery-hero">
+      <div class="container">
+        <p class="gallery-hero-label">Gallery</p>
+        <h1 class="gallery-hero-title">ギャラリー</h1>
+        <p class="gallery-hero-desc">ファンアートや配信のスクショなど、すべての作品を載せています。</p>
+      </div>
+    </div>
+
+    <section class="gallery-page-section">
+      <div class="container">
+        <div id="gallery-filter" class="gallery-filter" role="group" aria-label="ギャラリーの分類">
+          <button type="button" class="gallery-filter-btn" data-filter="all" aria-pressed="true">すべて</button>
+          <button type="button" class="gallery-filter-btn" data-filter="fanart" aria-pressed="false">Fan Art</button>
+          <button type="button" class="gallery-filter-btn" data-filter="screenshot" aria-pressed="false">Screenshot</button>
+        </div>
+        <div id="gallery-grid" class="gallery-grid gallery-page-grid" data-gallery-mode="all">
+          <p class="gallery-empty">画像は準備中です。</p>
+        </div>
+        <p class="gallery-note">
+          ファンアートの掲載希望は
+          <a href="https://x.com/Hina_nachi" target="_blank" rel="noopener">X（@Hina_nachi）</a>
+          のDMなどでお知らせください。
+        </p>
+      </div>
+    </section>
+  </main>
+  <script>
+    import "../../scripts/gallery.js";
+  </script>
+</BaseLayout>

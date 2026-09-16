@@ -1,0 +1,192 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NewsList from "../components/NewsList.astro";
+import EventList from "../components/EventList.astro";
+---
+<BaseLayout>
+  <main>
+    <section class="hero">
+      <div class="hero-visual">
+        <figure class="hero-portrait">
+          <img class="avatar-img avatar-img-hero" src="/image/hinachi_001.png" alt="ひなーちのアバター" width="640" height="800" />
+        </figure>
+      </div>
+      <div class="container hero-body">
+        <div class="hero-content">
+          <p class="hero-label">REALITY Streamer</p>
+          <h1 class="hero-title">ひなーち 🐥⸒⸒</h1>
+          <p class="hero-subtitle">hina-chi</p>
+          <p class="hero-desc">
+            みんなの応援、温めて<ruby>孵化<rt>ふか</rt></ruby>させるね！<br />
+            毎日を<span class="hero-hashtag">みんなと楽しく過ごす</span>！
+          </p>
+          <div class="hero-actions">
+            <a href="https://reality.app/profile/33ce85a0" class="btn btn-primary" target="_blank" rel="noopener">REALITY</a>
+            <a href="#schedule" class="btn btn-outline">配信予定</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside id="yt-live" class="yt-live" hidden aria-live="polite"></aside>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">About</h2>
+        <div class="about-layout">
+          <figure class="about-avatar">
+            <img class="avatar-img avatar-img-about" src="/image/hinachi_001.png" alt="ひなーちのアバター — 爽やか系お兄さんかと思ったら…" width="240" height="360" />
+            <figcaption>爽やか系お兄さん…?</figcaption>
+          </figure>
+          <div class="about-content">
+            <p>REALITY１不憫な男「ひなーち」</p>
+            <p>
+              配信アプリ「REALITY」を中心に配信しています。
+              雑談・ゲーム・たまに歌ったり、<br />
+              ゆるく楽しく配信するのが好きです。
+            </p>
+            <p>見に来てくれた人と一緒に盛り上がれる時間を作っています。</p>
+            <p>
+              配信の様子は <a href="https://www.youtube.com/@Hina-chi-vv" target="_blank" rel="noopener">YouTube</a> にアーカイブ、<br />
+              最新の告知は <a href="https://x.com/Hina_nachi" target="_blank" rel="noopener">X（@Hina_nachi）</a> でチェックできます。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Gallery</h2>
+        <p class="gallery-intro">ファンアートと配信スクショをランダムでピックアップしています。</p>
+        <div class="gallery-scroll">
+          <div id="gallery-grid" class="gallery-grid gallery-grid-scroll" data-gallery-mode="preview">
+            <p class="gallery-empty">画像は準備中です。</p>
+          </div>
+        </div>
+        <div class="gallery-actions">
+          <a href="/gallery/" class="btn btn-outline">すべて見る</a>
+        </div>
+        <p class="gallery-note">
+          ファンアートの掲載希望は
+          <a href="https://x.com/Hina_nachi" target="_blank" rel="noopener">X（@Hina_nachi）</a>
+          のDMなどでお知らせください。
+        </p>
+      </div>
+    </section>
+
+    <section id="schedule" class="section">
+      <div class="container">
+        <h2 class="section-title">Schedule</h2>
+        <div id="next-stream" class="next-stream" aria-live="polite">
+          <p class="next-stream-label">次の配信予定</p>
+          <p id="next-stream-text" class="next-stream-text">読み込み中…</p>
+        </div>
+        <div id="schedule-regular" class="schedule-grid"></div>
+        <h3 id="schedule-specials-heading" class="schedule-subheading" hidden>近日の予定</h3>
+        <ul id="schedule-specials" class="schedule-specials"></ul>
+        <p class="schedule-note">
+          休みや変更がある場合は
+          <a href="https://x.com/Hina_nachi" target="_blank" rel="noopener">X（@Hina_nachi）</a>
+          で告知します。
+        </p>
+      </div>
+    </section>
+
+    <section id="news" class="section">
+      <div class="container">
+        <h2 class="section-title">News</h2>
+        <NewsList preview />
+        <div class="section-actions">
+          <a href="/news/" class="btn btn-outline">すべて見る</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="events" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Events</h2>
+        <EventList preview />
+        <div class="section-actions">
+          <a href="/events/" class="btn btn-outline">すべて見る</a>
+        </div>
+        <p class="events-note">※ 実績は順次更新予定です。</p>
+      </div>
+    </section>
+
+    <section id="works" class="section">
+      <div class="container">
+        <h2 class="section-title">Works</h2>
+        <div class="works-grid">
+          <article class="work-card">
+            <div class="work-card-thumb"></div>
+            <div class="work-card-body">
+              <h3 class="work-card-title">REALITY 配信</h3>
+              <p class="work-card-desc">
+                メインの配信活動。雑談・ゲーム・たまに歌。
+                REALITY アプリから視聴・参加できます。
+              </p>
+              <ul class="work-card-tags">
+                <li>REALITY</li>
+                <li>配信</li>
+                <li>雑談</li>
+              </ul>
+              <div class="work-card-links">
+                <a href="https://reality.app/profile/33ce85a0" target="_blank" rel="noopener">プロフィール</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="work-card-thumb"></div>
+            <div class="work-card-body">
+              <h3 class="work-card-title">YouTube</h3>
+              <p class="work-card-desc">
+                配信のアーカイブ・切り抜きを公開しています。
+                見逃した回はこちらからどうぞ。
+              </p>
+              <ul class="work-card-tags">
+                <li>YouTube</li>
+                <li>アーカイブ</li>
+              </ul>
+              <div class="work-card-links">
+                <a href="https://www.youtube.com/@Hina-chi-vv" target="_blank" rel="noopener">チャンネルはココ！</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="links" class="section section-alt">
+      <div class="container">
+        <h2 class="section-title">Links</h2>
+        <ul class="links-list">
+          <li>
+            <a href="https://reality.app/profile/33ce85a0" target="_blank" rel="noopener">
+              <span class="links-label">REALITY</span>
+              <span class="links-value">ひなーち 🐥⸒⸒</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://www.youtube.com/@Hina-chi-vv" target="_blank" rel="noopener">
+              <span class="links-label">YouTube</span>
+              <span class="links-value">@Hina-chi-vv</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://x.com/Hina_nachi" target="_blank" rel="noopener">
+              <span class="links-label">X</span>
+              <span class="links-value">@Hina_nachi</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <script>
+    import "../scripts/youtube-live.js";
+    import "../scripts/schedule.js";
+    import "../scripts/gallery.js";
+  </script>
+</BaseLayout>

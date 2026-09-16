@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import EventList from "../../components/EventList.astro";
+---
+<BaseLayout
+  title="Events"
+  description="ひなーち（hina-chi）のイベント実績一覧。REALITYイベントなど。#ひなちぇっく"
+>
+  <main>
+    <div class="page-hero">
+      <div class="container">
+        <p class="page-hero-label">Events</p>
+        <h1 class="page-hero-title">イベント実績</h1>
+        <p class="page-hero-desc">これまでに参加したイベントの実績をすべて載せています。</p>
+      </div>
+    </div>
+    <section class="page-section">
+      <div class="container">
+        <EventList />
+        <p class="events-note">※ 実績は順次更新予定です。</p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,19 @@
+---
+import { NEWS } from "../data/news.js";
+
+const { preview = false } = Astro.props;
+const items = NEWS.filter((n) => n && n.text);
+const visible = preview ? items.slice(0, 4) : items;
+---
+<ul class="news-list">
+  {visible.length === 0 ? (
+    <li class="news-empty">お知らせはありません</li>
+  ) : (
+    visible.map((n) => (
+      <li class="news-item">
+        {n.date && <time class="news-date" datetime={n.date}>{n.date}</time>}
+        <span class="news-text">{n.text}</span>
+      </li>
+    ))
+  )}
+</ul>

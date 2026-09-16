@@ -1,0 +1,33 @@
+---
+const pathname = Astro.url.pathname;
+
+const links = [
+  { href: "/#about", label: "About" },
+  { href: "/gallery/", label: "Gallery", match: "/gallery/" },
+  { href: "/#schedule", label: "Schedule" },
+  { href: "/news/", label: "News", match: "/news/" },
+  { href: "/events/", label: "Events", match: "/events/" },
+  { href: "/#works", label: "Works" },
+  { href: "/blog/", label: "Blog", match: "/blog/" },
+  { href: "/#links", label: "Links" },
+];
+
+function isCurrent(href, match) {
+  if (match === "/blog/") return pathname === "/blog/" || pathname.startsWith("/blog/");
+  if (match) return pathname === match || pathname.startsWith(match);
+  return false;
+}
+---
+<header class="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">hina-chi</a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="メニュー">
+      <span class="nav-toggle-bars" aria-hidden="true"></span>
+    </button>
+    <nav id="site-nav" class="nav">
+      {links.map(({ href, label, match }) => (
+        <a href={href} aria-current={isCurrent(href, match) ? "page" : undefined}>{label}</a>
+      ))}
+    </nav>
+  </div>
+</header>

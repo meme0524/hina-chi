@@ -22,8 +22,8 @@ import zlib
 from pathlib import Path
 
 ROOT       = Path(__file__).resolve().parent.parent
-SRC_IMAGE  = ROOT / "image" / "hinachi_001.png"
-OUT_IMAGE  = ROOT / "image" / "hinachi_ogp.png"
+SRC_IMAGE  = ROOT / "public" / "image" / "hinachi_001.png"
+OUT_IMAGE  = ROOT / "public" / "image" / "hinachi_ogp.png"
 
 CANVAS_W = 1200
 CANVAS_H = 630

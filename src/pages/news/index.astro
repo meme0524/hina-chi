@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import NewsList from "../../components/NewsList.astro";
+---
+<BaseLayout
+  title="News"
+  description="ひなーち（hina-chi）のお知らせ一覧。配信・イベントの告知など。#ひなちぇっく"
+>
+  <main>
+    <div class="page-hero">
+      <div class="container">
+        <p class="page-hero-label">News</p>
+        <h1 class="page-hero-title">お知らせ</h1>
+        <p class="page-hero-desc">配信やイベントの告知など、これまでのお知らせをすべて載せています。</p>
+      </div>
+    </div>
+    <section class="page-section">
+      <div class="container">
+        <NewsList />
+      </div>
+    </section>
+  </main>
+</BaseLayout>

@@ -1,0 +1,42 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const publishedTime = `${post.data.date}T00:00:00+09:00`;
+---
+<BaseLayout
+  title={post.data.title}
+  description={post.data.desc}
+  ogType="article"
+  publishedTime={publishedTime}
+>
+  <main>
+    <section class="blog-section single-post-section">
+      <div class="container">
+        <a class="back-to-list" href="/blog/">← ブログ一覧へ戻る</a>
+        <article class="single-post">
+          {post.data.tags.length > 0 && (
+            <div class="post-tags">
+              {post.data.tags.map((tag) => <span class="post-tag">{tag}</span>)}
+            </div>
+          )}
+          <p class="single-post-date">{post.data.date}</p>
+          <h1 class="single-post-title">{post.data.title}</h1>
+          <div class="post-md">
+            <Content />
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

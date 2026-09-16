@@ -16,9 +16,9 @@ import zlib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC_IMAGE = ROOT / "image" / "IMG_1387.png"
-OUT_32 = ROOT / "image" / "favicon-32.png"
-OUT_180 = ROOT / "image" / "apple-touch-icon.png"
+SRC_IMAGE = ROOT / "public" / "image" / "IMG_1387.png"
+OUT_32 = ROOT / "public" / "image" / "favicon-32.png"
+OUT_180 = ROOT / "public" / "image" / "apple-touch-icon.png"
 
 
 def read_png_rgba(path):

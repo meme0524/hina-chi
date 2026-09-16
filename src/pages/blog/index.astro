@@ -1,0 +1,75 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const posts = (await getCollection("blog")).sort((a, b) => b.data.date.localeCompare(a.data.date));
+const rendered = await Promise.all(
+  posts.map(async (post) => ({
+    id: post.id,
+    data: post.data,
+    Content: (await render(post)).Content,
+  })),
+);
+const tags = [];
+for (const post of posts) {
+  for (const tag of post.data.tags) {
+    if (!tags.includes(tag)) tags.push(tag);
+  }
+}
+---
+<BaseLayout
+  title="Blog"
+  description="ひなーち（hina-chi）のブログ。配信のこと、日常のことなど。#ひなちぇっく"
+>
+  <main>
+    <div class="blog-hero">
+      <div class="container">
+        <p class="blog-hero-label">Blog</p>
+        <h1 class="blog-hero-title">ひなーちのブログ</h1>
+        <p class="blog-hero-desc">配信のこと、日常のこと、つれづれなるままに。</p>
+      </div>
+    </div>
+
+    <section class="blog-section">
+      <div class="container">
+        <div id="tag-filter" class="tag-filter">
+          <button class="tag-btn" type="button" data-tag="" aria-pressed="true">すべて</button>
+          {tags.map((tag) => (
+            <button class="tag-btn" type="button" data-tag={tag} aria-pressed="false">{tag}</button>
+          ))}
+        </div>
+        <ul id="post-list" class="post-list">
+          {rendered.map((post, index) => (
+            <li class="post-item" data-tags={post.data.tags.join(",")}>
+              <details open={index === 0}>
+                <summary class="post-toggle">
+                  <span class="post-date">{post.data.date}</span>
+                  <span class="post-title">{post.data.title}</span>
+                  <a class="post-permalink" href={`/blog/p/${post.id}/`} title="この記事の個別ページを開く（SNS共有用リンク）">🔗</a>
+                  <span class="post-arrow">▶</span>
+                </summary>
+                <div class="post-body">
+                  {post.data.tags.length > 0 && (
+                    <div class="post-tags">
+                      {post.data.tags.map((tag) => <span class="post-tag">{tag}</span>)}
+                    </div>
+                  )}
+                  <div class="post-md">
+                    <post.Content />
+                  </div>
+                </div>
+              </details>
+            </li>
+          ))}
+        </ul>
+        <p id="no-results" class="blog-empty" hidden>このタグの記事はまだありません。</p>
+        <div class="load-more-wrap">
+          <button id="load-more" class="load-more-btn" type="button" hidden>もっと見る</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    import "../../scripts/blog-list.js";
+  </script>
+</BaseLayout>

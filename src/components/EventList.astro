@@ -1,0 +1,27 @@
+---
+import { EVENTS } from "../data/events.js";
+
+const { preview = false } = Astro.props;
+const items = EVENTS.filter((e) => e && e.title);
+const visible = preview ? items.slice(0, 3) : items;
+---
+<ol class="events-list">
+  {visible.length === 0 ? (
+    <li class="news-empty">イベント情報はありません</li>
+  ) : (
+    visible.map((e) => (
+      <li class="event-item">
+        <div class="event-meta">
+          {e.date && (
+            <time class="event-date" datetime={e.date}>{e.date.replace("-", ".")}</time>
+          )}
+          {e.label && <span class="event-badge event-badge-online">{e.label}</span>}
+        </div>
+        <div class="event-body">
+          <h3 class="event-title">{e.title}</h3>
+          {e.desc && <p class="event-desc">{e.desc}</p>}
+        </div>
+      </li>
+    ))
+  )}
+</ol>
