@@ -15,65 +15,46 @@ const { plan } = Astro.props;
   <main class="stage">
     <p class="stage-kicker">Penalty roulette</p>
     <h1 class="stage-title">{plan.title}</h1>
-    <ul class="wheel" id="wheel">
-      {plan.roulette.map((item) => <li>{item}</li>)}
-    </ul>
+    <div class="roulette">
+      <div class="roulette-pointer" aria-hidden="true"></div>
+      <div class="roulette-disc" id="rotor"></div>
+    </div>
     <p class="stage-result" id="result" aria-live="polite">まだ回していません</p>
     <button type="button" class="stage-btn" id="spin">回す</button>
+    <ol class="roulette-legend">
+      {plan.roulette.map((item, index) => (
+        <li><span>{index + 1}</span>{item}</li>
+      ))}
+    </ol>
     <a class="stage-back" href={`/plans/${plan.slug}/`}>企画の内容に戻る</a>
   </main>
+  <script id="roulette-items" type="application/json" set:html={JSON.stringify(plan.roulette)} />
   <script>
-    const wheel = document.getElementById("wheel");
+    import { createRoulette } from "../../../scripts/roulette-wheel.js";
+
+    const items = JSON.parse(document.getElementById("roulette-items").textContent);
+    const rotor = document.getElementById("rotor");
     const result = document.getElementById("result");
     const spinButton = document.getElementById("spin");
-    const items = [...wheel.querySelectorAll("li")];
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let spinning = false;
+    const roulette = createRoulette(rotor);
+    roulette.setItems(items);
 
-    function highlight(index) {
-      items.forEach((item, i) => item.classList.toggle("is-active", i === index));
-    }
-
-    function finish(index) {
-      highlight(index);
-      result.textContent = items[index].textContent;
-      result.classList.add("is-set");
-      spinning = false;
-      spinButton.disabled = false;
-      spinButton.textContent = "もう一度";
-    }
-
-    function spin() {
-      if (spinning || items.length === 0) return;
-      spinning = true;
+    async function spin() {
+      if (roulette.isSpinning()) return;
       spinButton.disabled = true;
       spinButton.textContent = "回転中…";
       result.classList.remove("is-set");
       result.textContent = "";
-      const winner = Math.floor(Math.random() * items.length);
-      if (reducedMotion) {
-        finish(winner);
-        return;
-      }
-      const totalSteps = items.length * 4 + winner;
-      let step = 0;
-      const tick = () => {
-        highlight(step % items.length);
-        step += 1;
-        if (step <= totalSteps) {
-          const progress = step / totalSteps;
-          window.setTimeout(tick, 45 + progress * progress * 320);
-          return;
-        }
-        finish(winner);
-      };
-      tick();
+      const index = await roulette.spin();
+      result.textContent = `${index + 1} ${items[index]}`;
+      result.classList.add("is-set");
+      spinButton.disabled = false;
+      spinButton.textContent = "もう一度";
     }
 
     spinButton.addEventListener("click", spin);
     window.addEventListener("keydown", (event) => {
       if (event.code !== "Space" || event.repeat) return;
-      if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return;
       event.preventDefault();
       spin();
     });

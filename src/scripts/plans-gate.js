@@ -42,11 +42,15 @@ function renderList(plans, body) {
   const tools = el("div", "plan-tools");
   tools.append(
     el("h2", "", "配信ツール"),
-    el("p", "", "企画に関係なく使えるサイコロです。罰ゲームルーレットは、各企画のページから開きます。"),
+    el("p", "", "番号ルーレットとサイコロは、ここから開けます。罰ゲームルーレットは各企画のページから開きます。"),
   );
+  const links = el("div", "plan-tool-links");
+  const roulette = el("a", "btn btn-outline", "ルーレット");
+  roulette.href = "/tools/roulette/";
   const dice = el("a", "btn btn-outline", "サイコロ");
   dice.href = "/tools/dice/";
-  tools.append(dice);
+  links.append(roulette, dice);
+  tools.append(links);
   body.replaceChildren(list, tools);
 }
 
