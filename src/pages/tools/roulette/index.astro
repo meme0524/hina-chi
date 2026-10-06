@@ -1,76 +1,45 @@
 ---
 import ToolLayout from "../../../layouts/ToolLayout.astro";
-
-const counts = [6, 8, 10, 12];
 ---
-<ToolLayout title="ルーレット" description="配信で使える番号付きルーレット。円盤が回って、上の針の位置で止まります。">
+<ToolLayout title="ルーレット" description="配信で使えるルーレット。項目数とタグは設定ボタンから変えられます。">
   <main class="stage">
     <p class="stage-kicker">Roulette</p>
     <h1 class="stage-title">ルーレット</h1>
-    <div class="die-faces" role="group" aria-label="番号の数">
-      {counts.map((count) => (
-        <button type="button" data-count={count} aria-pressed={count === 10 ? "true" : "false"}>{count}</button>
-      ))}
-    </div>
     <div class="roulette">
       <div class="roulette-pointer" aria-hidden="true"></div>
       <div class="roulette-disc" id="rotor"></div>
     </div>
-    <p class="die-value" id="result" aria-live="polite">–</p>
-    <button type="button" class="stage-btn" id="spin">回す</button>
+    <p class="roulette-outcome" id="result" aria-live="polite">–</p>
+    <div class="stage-actions">
+      <button type="button" class="stage-btn" id="spin">回す</button>
+      <button type="button" class="stage-btn stage-btn-ghost" id="settings-toggle" aria-expanded="false" aria-controls="roulette-settings">設定</button>
+    </div>
+    <div id="roulette-settings" class="roulette-settings" hidden>
+      <div class="roulette-count">
+        <span id="count-label">項目数</span>
+        <button type="button" id="count-dec" aria-label="項目を減らす">−</button>
+        <input id="roulette-count" type="number" min="2" max="30" inputmode="numeric" aria-labelledby="count-label" value="10" />
+        <button type="button" id="count-inc" aria-label="項目を増やす">＋</button>
+      </div>
+      <ol id="roulette-tag-list" class="roulette-tag-list"></ol>
+      <div class="roulette-settings-actions">
+        <button type="button" class="stage-btn" id="roulette-apply">反映する</button>
+        <button type="button" class="stage-btn stage-btn-ghost" id="roulette-reset">最初の内容に戻す</button>
+      </div>
+    </div>
+    <ol class="roulette-legend" id="legend" hidden></ol>
     <p class="stage-links">
       <a class="stage-back" href="/tools/dice/">サイコロ</a>
       <a class="stage-back" href="/plans/">企画一覧へ戻る</a>
     </p>
   </main>
   <script>
-    import { createRoulette } from "../../../scripts/roulette-wheel.js";
+    import { mountRoulettePage } from "../../../scripts/roulette-page.js";
 
-    const rotor = document.getElementById("rotor");
-    const result = document.getElementById("result");
-    const spinButton = document.getElementById("spin");
-    const countButtons = [...document.querySelectorAll("[data-count]")];
-    const roulette = createRoulette(rotor);
-    let count = 10;
-
-    function numbers(total) {
-      return Array.from({ length: total }, (_, index) => String(index + 1));
-    }
-
-    function setCount(next) {
-      if (!roulette.setItems(numbers(next))) return;
-      count = next;
-      countButtons.forEach((button) => {
-        button.setAttribute("aria-pressed", Number(button.dataset.count) === next ? "true" : "false");
-      });
-      result.textContent = "–";
-      result.classList.remove("is-set");
-      spinButton.textContent = "回す";
-    }
-
-    async function spin() {
-      if (roulette.isSpinning()) return;
-      spinButton.disabled = true;
-      spinButton.textContent = "回転中…";
-      result.classList.remove("is-set");
-      result.textContent = "";
-      const index = await roulette.spin();
-      result.textContent = String(index + 1);
-      result.classList.add("is-set");
-      spinButton.disabled = false;
-      spinButton.textContent = "もう一度";
-    }
-
-    setCount(count);
-    countButtons.forEach((button) => {
-      button.addEventListener("click", () => setCount(Number(button.dataset.count)));
-    });
-    spinButton.addEventListener("click", spin);
-    window.addEventListener("keydown", (event) => {
-      if (event.code !== "Space" || event.repeat) return;
-      if (event.target instanceof HTMLButtonElement && event.target.dataset.count) return;
-      event.preventDefault();
-      spin();
+    mountRoulettePage({
+      defaults: Array.from({ length: 10 }, () => ""),
+      storageKey: "hina-chi:roulette",
+      idleText: "–",
     });
   </script>
 </ToolLayout>

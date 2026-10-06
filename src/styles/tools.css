@@ -74,6 +74,10 @@
   max-width: 40rem;
 }
 
+.roulette-legend[hidden] {
+  display: none;
+}
+
 .roulette-legend li {
   display: flex;
   align-items: center;
@@ -137,6 +141,149 @@
 .stage-btn:focus-visible {
   outline: 3px solid #ffedd5;
   outline-offset: 3px;
+}
+
+.stage-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.stage-btn-ghost {
+  min-width: 0;
+  padding: 0.7rem 1.25rem;
+  font-size: 1rem;
+  color: #fdba74;
+  background: transparent;
+  border: 2px solid #fb923c;
+  box-shadow: none;
+}
+
+.stage-btn-ghost:hover {
+  color: #14110e;
+  background: #fdba74;
+}
+
+.roulette-outcome {
+  min-height: 1.2em;
+  max-width: 16em;
+  font-size: clamp(2.5rem, 10vw, 5rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #ffedd5;
+}
+
+.roulette-outcome.is-set {
+  color: #fb923c;
+}
+
+.roulette-outcome.is-long {
+  font-size: clamp(1.35rem, 4.5vw, 2.25rem);
+}
+
+.roulette-settings {
+  width: min(100%, 28rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1rem;
+  text-align: left;
+  background: #241c16;
+  border: 1px solid #3f2e22;
+}
+
+.roulette-settings[hidden] {
+  display: none;
+}
+
+.roulette-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.roulette-count span {
+  font-weight: 700;
+  margin-right: 0.25rem;
+}
+
+.roulette-count input,
+.roulette-tag-list input {
+  font: inherit;
+  color: #fff7ed;
+  background: #14110e;
+  border: 2px solid #3f2e22;
+}
+
+.roulette-count input {
+  width: 4.5rem;
+  padding: 0.4rem 0.25rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  text-align: center;
+}
+
+.roulette-count button {
+  appearance: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid #3f2e22;
+  background: #241c16;
+  color: #fff7ed;
+  font: inherit;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.roulette-count button:hover,
+.roulette-tag-list input:focus,
+.roulette-count input:focus {
+  border-color: #fb923c;
+}
+
+.roulette-tag-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-height: 16rem;
+  margin: 0;
+  padding: 0;
+  overflow: auto;
+}
+
+.roulette-tag-list label {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.roulette-tag-list span {
+  font-weight: 700;
+  text-align: right;
+  color: #fdba74;
+}
+
+.roulette-tag-list input {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+}
+
+.roulette-settings-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.roulette-settings-actions .stage-btn {
+  font-size: 1rem;
+  padding: 0.65rem 1.1rem;
 }
 
 .die-faces {
