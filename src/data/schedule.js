@@ -12,6 +12,12 @@ export const SCHEDULE_REGULAR = [
 
 export const SCHEDULE_SPECIALS = [
   {
+    date: "2026-10-17",
+    type: "collab",
+    title: "港ヨリさん主催、妨害マージャン企画",
+    desc: "参加者: ｶﾙﾋﾟｽさん、カナリアさん、ひなーち",
+  },
+  {
     date: "2026-09-05",
     type: "collab",
     title: "いろはすさん主催、自称歌下手どもの歌フェス、略して「歌下ス」",
