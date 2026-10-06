@@ -1,0 +1,79 @@
+---
+import ToolLayout from "../../../layouts/ToolLayout.astro";
+
+const faces = [2, 6, 10, 20];
+---
+<ToolLayout title="サイコロ" description="配信で使えるサイコロ。2・6・10・20面から選べます。">
+  <main class="stage">
+    <p class="stage-kicker">Dice</p>
+    <h1 class="stage-title">サイコロ</h1>
+    <div class="die-faces" role="group" aria-label="面の数">
+      {faces.map((face) => (
+        <button type="button" data-faces={face} aria-pressed={face === 6 ? "true" : "false"}>{face}面</button>
+      ))}
+    </div>
+    <p class="die-value" id="die" aria-live="polite">–</p>
+    <button type="button" class="stage-btn" id="roll">振る</button>
+    <a class="stage-back" href="/plans/">企画一覧へ戻る</a>
+  </main>
+  <script>
+    const die = document.getElementById("die");
+    const rollButton = document.getElementById("roll");
+    const faceButtons = [...document.querySelectorAll("[data-faces]")];
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let faces = 6;
+    let rolling = false;
+
+    function setFaces(next) {
+      faces = next;
+      faceButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", Number(button.dataset.faces) === next ? "true" : "false");
+      });
+    }
+
+    function finish(value) {
+      die.textContent = String(value);
+      rolling = false;
+      rollButton.disabled = false;
+      rollButton.textContent = "もう一度";
+    }
+
+    function roll() {
+      if (rolling) return;
+      rolling = true;
+      rollButton.disabled = true;
+      rollButton.textContent = "振っています…";
+      const value = 1 + Math.floor(Math.random() * faces);
+      if (reducedMotion) {
+        finish(value);
+        return;
+      }
+      let step = 0;
+      const tick = () => {
+        die.textContent = String(1 + Math.floor(Math.random() * faces));
+        step += 1;
+        if (step < 12) {
+          window.setTimeout(tick, 40 + step * 18);
+          return;
+        }
+        finish(value);
+      };
+      tick();
+    }
+
+    faceButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        if (rolling) return;
+        setFaces(Number(button.dataset.faces));
+        die.textContent = "–";
+        rollButton.textContent = "振る";
+      });
+    });
+    rollButton.addEventListener("click", roll);
+    window.addEventListener("keydown", (event) => {
+      if (event.code !== "Space" || event.repeat) return;
+      event.preventDefault();
+      roll();
+    });
+  </script>
+</ToolLayout>

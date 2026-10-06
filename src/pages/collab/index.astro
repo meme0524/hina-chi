@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { COLLAB_ASKS, COLLAB_FORMATS, COLLAB_NOTES } from "../../data/collab.js";
+import "../../styles/collab.css";
+---
+<BaseLayout
+  title="Collab"
+  description="ひなーちとのコラボ案内。雑談・ゲーム・歌・体を張る企画など、参加できる配信内容をまとめています。#ひなちぇっく"
+>
+  <main>
+    <div class="page-hero">
+      <div class="container">
+        <p class="page-hero-label">Collab</p>
+        <h1 class="page-hero-title">コラボのご案内</h1>
+        <p class="page-hero-desc">呼んでくださるライバーさん向けに、参加できる配信内容をまとめています。</p>
+      </div>
+    </div>
+    <section class="page-section">
+      <div class="container">
+        <p class="collab-lead">
+          コラボのお誘いはうれしいです。できることを先に書いておくので、合いそうな企画があれば声をかけてください。
+        </p>
+        <ul class="collab-list">
+          {COLLAB_FORMATS.map((format) => (
+            <li class="collab-card">
+              <h2 class="collab-card-title">{format.title}</h2>
+              <p class="collab-card-summary">{format.summary}</p>
+              <ul class="collab-points">
+                {format.points.map((point) => <li>{point}</li>)}
+              </ul>
+              {format.link && (
+                <a class="collab-card-link" href={format.link.href}>{format.link.label}</a>
+              )}
+            </li>
+          ))}
+        </ul>
+
+        <section class="collab-section">
+          <h2>参加の目安</h2>
+          <ul class="collab-notes">
+            {COLLAB_NOTES.map((note) => <li>{note}</li>)}
+          </ul>
+        </section>
+
+        <section class="collab-contact">
+          <h2>連絡先</h2>
+          <p>
+            <a href="https://x.com/Hina_nachi" target="_blank" rel="noopener">X（@Hina_nachi）</a>
+            のDMでご連絡ください。次のことが書いてあると、返事がしやすいです。
+          </p>
+          <ul class="collab-asks">
+            {COLLAB_ASKS.map((ask) => <li>{ask}</li>)}
+          </ul>
+          <div class="collab-actions">
+            <a class="btn btn-primary" href="https://x.com/Hina_nachi" target="_blank" rel="noopener">Xで連絡する</a>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

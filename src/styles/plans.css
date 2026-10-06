@@ -1,0 +1,209 @@
+.plan-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.plan-card {
+  display: block;
+  padding: 1.25rem 1.35rem;
+  background: var(--gray-50);
+  border: 1px solid var(--orange-100);
+  border-left: 3px solid var(--orange-400);
+  color: inherit;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.plan-card:hover {
+  background: var(--orange-50);
+  border-color: var(--orange-200);
+  border-left-color: var(--orange-500);
+  color: inherit;
+}
+
+.plan-card-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 0.35rem;
+}
+
+.plan-card-summary {
+  font-size: 0.9375rem;
+  color: var(--gray-700);
+  margin-bottom: 0.75rem;
+}
+
+.plan-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.plan-meta span {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--orange-700);
+  background: var(--white);
+  border: 1px solid var(--orange-200);
+  padding: 0.15rem 0.55rem;
+}
+
+.plan-tools {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--orange-100);
+}
+
+.plan-tools h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 0.5rem;
+}
+
+.plan-tools p {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+  margin-bottom: 0.875rem;
+}
+
+.plan-back + .plan-meta {
+  margin-bottom: 0.25rem;
+}
+
+.plan-section {
+  margin-top: 2rem;
+}
+
+.plan-section h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 0.75rem;
+}
+
+.plan-steps {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.plan-steps li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.plan-steps li:not(:last-child)::after {
+  content: "→";
+  color: var(--orange-500);
+  font-weight: 700;
+}
+
+.coin-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.coin-item {
+  display: grid;
+  grid-template-columns: minmax(9.5rem, 14rem) 1fr;
+  gap: 0.75rem 1.25rem;
+  align-items: center;
+  padding: 1rem 1.1rem;
+  background: var(--orange-50);
+  border: 1px solid var(--orange-100);
+}
+
+.coin-label {
+  font-weight: 700;
+  color: var(--orange-700);
+}
+
+.coin-effect {
+  color: var(--gray-900);
+  font-weight: 500;
+}
+
+.coin-alt {
+  display: block;
+  margin-top: 0.2rem;
+  color: var(--gray-500);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.plan-rules,
+.roulette-outcomes {
+  margin-top: 0.75rem;
+  padding-left: 1.25rem;
+  color: var(--gray-900);
+}
+
+.plan-rules li + li,
+.roulette-outcomes li + li {
+  margin-top: 0.35rem;
+}
+
+.plan-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+
+.plan-back {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.plans-gate {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 22rem;
+}
+
+.plans-gate[hidden] {
+  display: none;
+}
+
+.plans-gate label {
+  font-weight: 700;
+  color: var(--gray-900);
+}
+
+.plans-gate input {
+  font: inherit;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--orange-200);
+  color: var(--gray-900);
+  background: var(--white);
+}
+
+.plans-gate input:focus-visible {
+  outline: 2px solid var(--orange-500);
+  outline-offset: 2px;
+}
+
+.plans-gate-error {
+  color: var(--orange-700);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .coin-item {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}

@@ -1,0 +1,91 @@
+.collab-lead {
+  margin-bottom: 1.5rem;
+  color: var(--gray-700);
+}
+
+.collab-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.collab-card {
+  padding: 1.25rem 1.35rem;
+  background: var(--gray-50);
+  border: 1px solid var(--orange-100);
+  border-left: 3px solid var(--orange-400);
+}
+
+.collab-card-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 0.35rem;
+}
+
+.collab-card-summary {
+  font-size: 0.9375rem;
+  color: var(--gray-700);
+}
+
+.collab-points {
+  margin-top: 0.75rem;
+  padding-left: 1.25rem;
+  color: var(--gray-900);
+}
+
+.collab-points li + li {
+  margin-top: 0.35rem;
+}
+
+.collab-card-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.collab-section {
+  margin-top: 2.5rem;
+}
+
+.collab-section h2 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  margin-bottom: 0.75rem;
+}
+
+.collab-notes,
+.collab-asks {
+  padding-left: 1.25rem;
+  color: var(--gray-900);
+}
+
+.collab-notes li + li,
+.collab-asks li + li {
+  margin-top: 0.35rem;
+}
+
+.collab-contact {
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.35rem;
+  background: var(--orange-50);
+  border: 1px solid var(--orange-100);
+}
+
+.collab-contact p {
+  color: var(--gray-700);
+}
+
+.collab-asks {
+  margin: 0.75rem 0 0;
+}
+
+.collab-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}

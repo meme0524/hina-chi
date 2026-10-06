@@ -1,0 +1,81 @@
+---
+import ToolLayout from "../../../layouts/ToolLayout.astro";
+import { PLANS } from "../../../data/plans.js";
+
+export function getStaticPaths() {
+  return PLANS.filter((plan) => plan.roulette?.length).map((plan) => ({
+    params: { slug: plan.slug },
+    props: { plan },
+  }));
+}
+
+const { plan } = Astro.props;
+---
+<ToolLayout title={`${plan.title} ルーレット`} description={`${plan.title}の追加罰ゲームルーレット`}>
+  <main class="stage">
+    <p class="stage-kicker">Penalty roulette</p>
+    <h1 class="stage-title">{plan.title}</h1>
+    <ul class="wheel" id="wheel">
+      {plan.roulette.map((item) => <li>{item}</li>)}
+    </ul>
+    <p class="stage-result" id="result" aria-live="polite">まだ回していません</p>
+    <button type="button" class="stage-btn" id="spin">回す</button>
+    <a class="stage-back" href={`/plans/${plan.slug}/`}>企画の内容に戻る</a>
+  </main>
+  <script>
+    const wheel = document.getElementById("wheel");
+    const result = document.getElementById("result");
+    const spinButton = document.getElementById("spin");
+    const items = [...wheel.querySelectorAll("li")];
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let spinning = false;
+
+    function highlight(index) {
+      items.forEach((item, i) => item.classList.toggle("is-active", i === index));
+    }
+
+    function finish(index) {
+      highlight(index);
+      result.textContent = items[index].textContent;
+      result.classList.add("is-set");
+      spinning = false;
+      spinButton.disabled = false;
+      spinButton.textContent = "もう一度";
+    }
+
+    function spin() {
+      if (spinning || items.length === 0) return;
+      spinning = true;
+      spinButton.disabled = true;
+      spinButton.textContent = "回転中…";
+      result.classList.remove("is-set");
+      result.textContent = "";
+      const winner = Math.floor(Math.random() * items.length);
+      if (reducedMotion) {
+        finish(winner);
+        return;
+      }
+      const totalSteps = items.length * 4 + winner;
+      let step = 0;
+      const tick = () => {
+        highlight(step % items.length);
+        step += 1;
+        if (step <= totalSteps) {
+          const progress = step / totalSteps;
+          window.setTimeout(tick, 45 + progress * progress * 320);
+          return;
+        }
+        finish(winner);
+      };
+      tick();
+    }
+
+    spinButton.addEventListener("click", spin);
+    window.addEventListener("keydown", (event) => {
+      if (event.code !== "Space" || event.repeat) return;
+      if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) return;
+      event.preventDefault();
+      spin();
+    });
+  </script>
+</ToolLayout>

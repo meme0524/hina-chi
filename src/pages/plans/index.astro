@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import "../../styles/plans.css";
+---
+<BaseLayout title="Plans" description="ひなーちの配信企画。閲覧にはパスワードが必要です。#ひなちぇっく">
+  <main id="plans-app">
+    <div class="page-hero">
+      <div class="container">
+        <p class="page-hero-label">Plans</p>
+        <h1 class="page-hero-title" id="plans-title">配信企画</h1>
+        <p class="page-hero-desc" id="plans-desc">パスワードを入れると内容を表示します。</p>
+      </div>
+    </div>
+    <section class="page-section">
+      <div class="container">
+        <form id="plans-gate" class="plans-gate">
+          <label for="plans-password">パスワード</label>
+          <input id="plans-password" name="password" type="password" autocomplete="current-password" required />
+          <button class="btn btn-primary" type="submit">開く</button>
+          <p id="plans-gate-error" class="plans-gate-error" hidden>パスワードが違います。</p>
+        </form>
+        <div id="plans-body" hidden></div>
+      </div>
+    </section>
+  </main>
+  <script>
+    import { openPlans } from "../../scripts/plans-gate.js";
+    openPlans(document.getElementById("plans-app"));
+  </script>
+</BaseLayout>
