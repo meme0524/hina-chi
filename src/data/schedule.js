@@ -12,6 +12,12 @@ export const SCHEDULE_REGULAR = [
 
 export const SCHEDULE_SPECIALS = [
   {
+    date: "2026-11-16",
+    type: "event",
+    title: "CHARGESPOTサイネージ広告掲載イベント！",
+    desc: "1周年記念イベント！",
+  },
+  {
     date: "2026-10-17",
     type: "collab",
     title: "港ヨリさん主催、妨害マージャン企画",
