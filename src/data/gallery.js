@@ -2,6 +2,12 @@
 // src は public/ からのパス（image/gallery/ 以下がおすすめ）
 export const GALLERY = [
   {
+    src: "image/gallery/screenshots/004-paw-gloves-sofa.jpg",
+    alt: "白い髪と猫耳の姿で、肉球グローブを向けてソファに座っている配信スクショ",
+    type: "screenshot",
+    caption: "肉球グローブでごあいさつ",
+  },
+  {
     src: "image/gallery/screenshots/003-towers.png",
     alt: "イベントの応援ありがとうございました！ ギフトタワーに囲まれて手を合わせている配信スクショ",
     type: "screenshot",
