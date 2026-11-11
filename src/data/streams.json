@@ -1,0 +1,613 @@
+{
+  "formatVersion": 1,
+  "schemaVersion": 1,
+  "exportedAt": "2026-11-11T09:20:45.231Z",
+  "feature": {
+    "id": "streams",
+    "label": "ストリーム"
+  },
+  "data": {
+    "streams": [
+      {
+        "id": "fb0643cb-f1c1-42ab-872d-f931562ef4e6",
+        "createdAt": "2026-11-10T07:06:38.249Z",
+        "updatedAt": "2026-11-10T08:08:51.720Z",
+        "title": "雑談",
+        "overlayText": "",
+        "date": "2026-11-13",
+        "startTime": "21:00",
+        "scheduledAt": "2026-11-13T21:00",
+        "platform": "その他",
+        "thumbnailPath": "",
+        "streamUrl": "",
+        "status": "planned",
+        "genre": "",
+        "purpose": "",
+        "thumbnail": "",
+        "announcement": "",
+        "keywords": "",
+        "checklist": {
+          "frame": false,
+          "thumbnail": false,
+          "title": false,
+          "rights": false,
+          "obs": false,
+          "rules": false,
+          "standby": false
+        },
+        "metrics": {
+          "peakViewers": "",
+          "likes": "",
+          "playbacks": "",
+          "avgWatchTime": "",
+          "comments": "",
+          "ctr": "",
+          "retention": "",
+          "gifts": ""
+        },
+        "kpt": {
+          "keep": "",
+          "problem": "",
+          "try": ""
+        },
+        "memo": "",
+        "analyticsId": "",
+        "sync": {
+          "id": "aa286d33-d232-4ce5-9cb1-f62d526aca12",
+          "updatedAt": "2026-11-10T08:08:52.172Z",
+          "hash": "{\"date\":\"2026-11-13\",\"startTime\":\"21:00\",\"title\":\"雑談\",\"platform\":\"その他\",\"url\":\"\",\"note\":\"\",\"hidden\":false,\"thumbnail\":\"\"}"
+        }
+      },
+      {
+        "id": "3ff2427a-7589-4557-89bd-28cf3b9b0d33",
+        "createdAt": "2026-11-10T06:06:01.571Z",
+        "updatedAt": "2026-11-10T06:06:06.176Z",
+        "title": "雑談",
+        "overlayText": "",
+        "date": "2026-11-11",
+        "startTime": "21:00",
+        "scheduledAt": "2026-11-11T21:00",
+        "platform": "その他",
+        "thumbnailPath": "",
+        "streamUrl": "",
+        "status": "planned",
+        "genre": "",
+        "purpose": "",
+        "thumbnail": "",
+        "announcement": "",
+        "keywords": "",
+        "checklist": {
+          "frame": false,
+          "thumbnail": false,
+          "title": false,
+          "rights": false,
+          "obs": false,
+          "rules": false,
+          "standby": false
+        },
+        "metrics": {
+          "peakViewers": "",
+          "likes": "",
+          "playbacks": "",
+          "avgWatchTime": "",
+          "comments": "",
+          "ctr": "",
+          "retention": "",
+          "gifts": ""
+        },
+        "kpt": {
+          "keep": "",
+          "problem": "",
+          "try": ""
+        },
+        "memo": "",
+        "analyticsId": "",
+        "sync": {
+          "id": "3de90beb-3159-4ad5-8810-abb28d68efac",
+          "updatedAt": "2026-11-10T06:06:06.629Z",
+          "hash": "{\"date\":\"2026-11-11\",\"startTime\":\"21:00\",\"title\":\"雑談\",\"platform\":\"その他\",\"url\":\"\",\"note\":\"\",\"hidden\":false,\"thumbnail\":\"\"}"
+        }
+      },
+      {
+        "id": "f0646b41-9b69-424a-a901-1bb47693e5a0",
+        "createdAt": "2026-11-10T06:05:54.377Z",
+        "updatedAt": "2026-11-10T06:05:59.414Z",
+        "title": "雑談",
+        "overlayText": "",
+        "date": "2026-11-10",
+        "startTime": "21:00",
+        "scheduledAt": "2026-11-10T21:00",
+        "platform": "その他",
+        "thumbnailPath": "",
+        "streamUrl": "",
+        "status": "planned",
+        "genre": "",
+        "purpose": "",
+        "thumbnail": "",
+        "announcement": "",
+        "keywords": "",
+        "checklist": {
+          "frame": false,
+          "thumbnail": false,
+          "title": false,
+          "rights": false,
+          "obs": false,
+          "rules": false,
+          "standby": false
+        },
+        "metrics": {
+          "peakViewers": "",
+          "likes": "",
+          "playbacks": "",
+          "avgWatchTime": "",
+          "comments": "",
+          "ctr": "",
+          "retention": "",
+          "gifts": ""
+        },
+        "kpt": {
+          "keep": "",
+          "problem": "",
+          "try": ""
+        },
+        "memo": "",
+        "analyticsId": "",
+        "sync": {
+          "id": "27819e8e-16dc-4ef8-a36e-fd56ffe5e509",
+          "updatedAt": "2026-11-10T06:05:59.867Z",
+          "hash": "{\"date\":\"2026-11-10\",\"startTime\":\"21:00\",\"title\":\"雑談\",\"platform\":\"その他\",\"url\":\"\",\"note\":\"\",\"hidden\":false,\"thumbnail\":\"\"}"
+        }
+      },
+      {
+        "id": "b4940716-e2c1-4207-bafe-bc87161ed07f",
+        "createdAt": "2026-11-10T06:03:41.599Z",
+        "updatedAt": "2026-11-10T06:11:03.427Z",
+        "title": "【1周年おめでとう】今日の主役が途切れるまで終われない配信。",
+        "overlayText": "",
+        "date": "2026-11-19",
+        "startTime": "21:00",
+        "scheduledAt": "2026-11-19T21:00",
+        "platform": "YouTube",
+        "thumbnailPath": "",
+        "streamUrl": "",
+        "status": "planned",
+        "genre": "",
+        "purpose": "",
+        "thumbnail": "",
+        "announcement": "",
+        "keywords": "",
+        "checklist": {
+          "frame": false,
+          "thumbnail": false,
+          "title": false,
+          "rights": false,
+          "obs": false,
+          "rules": false,
+          "standby": false
+        },
+        "metrics": {
+          "peakViewers": "",
+          "likes": "",
+          "playbacks": "",
+          "avgWatchTime": "",
+          "comments": "",
+          "ctr": "",
+          "retention": "",
+          "gifts": ""
+        },
+        "kpt": {
+          "keep": "",
+          "problem": "",
+          "try": ""
+        },
+        "memo": "",
+        "analyticsId": "",
+        "sync": {
+          "id": "dc77dfa5-3ba4-4598-b170-65dacc1a5725",
+          "updatedAt": "2026-11-10T06:11:03.880Z",
+          "hash": "{\"date\":\"2026-11-19\",\"startTime\":\"21:00\",\"title\":\"【1周年おめでとう】今日の主役が途切れるまで終われない配信。\",\"platform\":\"YouTube\",\"url\":\"\",\"note\":\"\",\"hidden\":false,\"thumbnail\":\"\"}"
+        }
+      },
+      {
+        "id": "08c14fac-2252-41eb-931e-72e92de8139b",
+        "createdAt": "2026-11-10T05:53:16.777Z",
+        "updatedAt": "2026-11-10T05:53:35.579Z",
+        "title": "ラスラン",
+        "overlayText": "",
+        "date": "2026-11-22",
+        "startTime": "23:00",
+        "scheduledAt": "2026-11-22T23:00",
+        "platform": "その他",
+        "thumbnailPath": "",
+        "streamUrl": "",
+        "status": "planned",
+        "genre": "",
+        "purpose": "",
+        "thumbnail": "",
+        "announcement": "",
+        "keywords": "",
+        "checklist": {
+          "frame": false,
+          "thumbnail": false,
+          "title": false,
+          "rights": false,
+          "obs": false,
+          "rules": false,
+          "standby": false
+        },
+        "metrics": {
+          "peakViewers": "",
+          "likes": "",
+          "playbacks": "",
+          "avgWatchTime": "",
+          "comments": "",
+          "ctr": "",
+          "retention": "",
+          "gifts": ""
+        },
+        "kpt": {
+          "keep": "",
+          "problem": "",
+          "try": ""
+        },
+        "memo": "",
+        "analyticsId": "",
+        "sync": {
+          "id": "7fce4ff5-4b3b-4f21-98f0-fa23828849ab",
+          "updatedAt": "2026-11-10T05:53:36.032Z",
+          "hash": "{\"date\":\"2026-11-22\",\"startTime\":\"23:00\",\"title\":\"ラスラン\",\"platform\":\"その他\",\"url\":\"\",\"note\":\"\",\"hidden\":false,\"thumbnail\":\"\"}"
+        }
+      },
+      {
+        "id": "1ec539aa-7de6-4ea9-a5ff-b5856b918488",
+        "createdAt": "2026-11-10T05:52:09.395Z",
+        "updatedAt": "2026-11-10T05:52:36.696Z",
+        "title": "【全力ケツたたき】",
+        "overlayText": "",
+        "date": "2026-11-21",
+        "startTime": "21:00",
+        "scheduledAt": "2026-11-21T21:00",
+        "platform": "YouTube",
+        "thumbnailPath": "",
+        "streamUrl": "",
+        "status": "planned",
+        "genre": "",
+        "purpose": "",
+        "thumbnail": "雛丸、ぽちた、綴に企画内容を送る。",
+        "announcement": "",
+        "keywords": "",
+        "checklist": {
+          "frame": false,
+          "thumbnail": false,
+          "title": false,
+          "rights": false,
+          "obs": false,
+          "rules": false,
+          "standby": false
+        },
+        "metrics": {
+          "peakViewers": "",
+          "likes": "",
+          "playbacks": "",
+          "avgWatchTime": "",
+          "comments": "",
+          "ctr": "",
+          "retention": "",
+          "gifts": ""
+        },
+        "kpt": {
+          "keep": "",
+          "problem": "",
+          "try": ""
+        },
+        "memo": "",
+        "analyticsId": "",
+        "sync": {
+          "id": "ec09ec31-2f97-45d7-921c-eec0d5f0d83a",
+          "updatedAt": "2026-11-10T05:52:37.149Z",
+          "hash": "{\"date\":\"2026-11-21\",\"startTime\":\"21:00\",\"title\":\"【全力ケツたたき】\",\"platform\":\"YouTube\",\"url\":\"\",\"note\":\"\",\"hidden\":false,\"thumbnail\":\"\"}"
+        }
+      },
+      {
+        "id": "75ad71c8-c410-4700-b944-4815b06870e0",
+        "createdAt": "2026-11-10T05:48:23.859Z",
+        "updatedAt": "2026-11-10T05:52:04.867Z",
+        "title": "【常識力クイズ！】",
+        "overlayText": "",
+        "date": "2026-11-20",
+        "startTime": "21:00",
+        "scheduledAt": "2026-11-20T21:00",
+        "platform": "YouTube",
+        "thumbnailPath": "",
+        "streamUrl": "",
+        "status": "planned",
+        "genre": "企画",
+        "purpose": "",
+        "thumbnail": "花守、港に立ち絵を送ってもらう。",
+        "announcement": "",
+        "keywords": "",
+        "checklist": {
+          "frame": false,
+          "thumbnail": false,
+          "title": false,
+          "rights": false,
+          "obs": false,
+          "rules": false,
+          "standby": false
+        },
+        "metrics": {
+          "peakViewers": "",
+          "likes": "",
+          "playbacks": "",
+          "avgWatchTime": "",
+          "comments": "",
+          "ctr": "",
+          "retention": "",
+          "gifts": ""
+        },
+        "kpt": {
+          "keep": "",
+          "problem": "",
+          "try": ""
+        },
+        "memo": "",
+        "analyticsId": "",
+        "sync": {
+          "id": "2aca18de-1ab4-41ba-ac6d-9b7fed43eea9",
+          "updatedAt": "2026-11-10T05:52:05.320Z",
+          "hash": "{\"date\":\"2026-11-20\",\"startTime\":\"21:00\",\"title\":\"【常識力クイズ！】\",\"platform\":\"YouTube\",\"url\":\"\",\"note\":\"\",\"hidden\":false,\"thumbnail\":\"\"}"
+        }
+      },
+      {
+        "id": "938fd6d2-e6a6-45fd-abe7-a3c9bf9fc685",
+        "createdAt": "2026-11-10T05:47:04.605Z",
+        "updatedAt": "2026-11-10T05:48:21.850Z",
+        "title": "【港ヨリコラボ！】",
+        "overlayText": "",
+        "date": "2026-11-12",
+        "startTime": "21:00",
+        "scheduledAt": "2026-11-12T21:00",
+        "platform": "YouTube",
+        "thumbnailPath": "",
+        "streamUrl": "",
+        "status": "planned",
+        "genre": "",
+        "purpose": "",
+        "thumbnail": "",
+        "announcement": "",
+        "keywords": "",
+        "checklist": {
+          "frame": false,
+          "thumbnail": false,
+          "title": false,
+          "rights": false,
+          "obs": false,
+          "rules": false,
+          "standby": false
+        },
+        "metrics": {
+          "peakViewers": "",
+          "likes": "",
+          "playbacks": "",
+          "avgWatchTime": "",
+          "comments": "",
+          "ctr": "",
+          "retention": "",
+          "gifts": ""
+        },
+        "kpt": {
+          "keep": "",
+          "problem": "",
+          "try": ""
+        },
+        "memo": "",
+        "analyticsId": "",
+        "sync": {
+          "id": "eae627c0-505d-4e59-af4a-3784860f8a66",
+          "updatedAt": "2026-11-10T05:48:22.302Z",
+          "hash": "{\"date\":\"2026-11-12\",\"startTime\":\"21:00\",\"title\":\"【港ヨリコラボ！】\",\"platform\":\"YouTube\",\"url\":\"\",\"note\":\"\",\"hidden\":false,\"thumbnail\":\"\"}"
+        }
+      },
+      {
+        "id": "86bdd555-a287-4f86-8dc8-faa9160a8d58",
+        "createdAt": "2026-11-10T05:43:21.528Z",
+        "updatedAt": "2026-11-10T05:46:13.920Z",
+        "title": "応援凸待ち",
+        "overlayText": "",
+        "date": "2026-11-16",
+        "startTime": "21:00",
+        "scheduledAt": "2026-11-16T21:00",
+        "platform": "その他",
+        "thumbnailPath": "",
+        "streamUrl": "",
+        "status": "planned",
+        "genre": "雑談",
+        "purpose": "",
+        "thumbnail": "",
+        "announcement": "",
+        "keywords": "",
+        "checklist": {
+          "frame": false,
+          "thumbnail": false,
+          "title": false,
+          "rights": false,
+          "obs": false,
+          "rules": false,
+          "standby": false
+        },
+        "metrics": {
+          "peakViewers": "",
+          "likes": "",
+          "playbacks": "",
+          "avgWatchTime": "",
+          "comments": "",
+          "ctr": "",
+          "retention": "",
+          "gifts": ""
+        },
+        "kpt": {
+          "keep": "",
+          "problem": "",
+          "try": ""
+        },
+        "memo": "",
+        "analyticsId": "",
+        "sync": {
+          "id": "2f176073-d225-4d4e-b387-5a00605f3d08",
+          "updatedAt": "2026-11-10T05:46:14.375Z",
+          "hash": "{\"date\":\"2026-11-16\",\"startTime\":\"21:00\",\"title\":\"応援凸待ち\",\"platform\":\"その他\",\"url\":\"\",\"note\":\"\",\"hidden\":false,\"thumbnail\":\"\"}"
+        }
+      },
+      {
+        "id": "55079b52-fbc7-46c8-b27e-d85a51e47800",
+        "createdAt": "2026-11-07T11:32:02.809Z",
+        "updatedAt": "2026-11-07T11:32:20.606Z",
+        "title": "Jasmy 歌枠",
+        "overlayText": "",
+        "date": "2026-11-08",
+        "startTime": "20:00",
+        "scheduledAt": "2026-11-08T20:00",
+        "platform": "YouTube",
+        "thumbnailPath": "",
+        "streamUrl": "",
+        "status": "planned",
+        "genre": "",
+        "purpose": "",
+        "thumbnail": "",
+        "announcement": "",
+        "keywords": "",
+        "checklist": {
+          "frame": false,
+          "thumbnail": false,
+          "title": false,
+          "rights": false,
+          "obs": false,
+          "rules": false,
+          "standby": false
+        },
+        "metrics": {
+          "peakViewers": "",
+          "likes": "",
+          "playbacks": "",
+          "avgWatchTime": "",
+          "comments": "",
+          "ctr": "",
+          "retention": "",
+          "gifts": ""
+        },
+        "kpt": {
+          "keep": "",
+          "problem": "",
+          "try": ""
+        },
+        "memo": "",
+        "analyticsId": "",
+        "sync": {
+          "id": "3d98f65f-32a9-45ac-bba5-cad8a0fd731f",
+          "updatedAt": "2026-11-07T11:32:21.060Z",
+          "hash": "{\"date\":\"2026-11-08\",\"startTime\":\"20:00\",\"title\":\"Jasmy 歌枠\",\"platform\":\"YouTube\",\"url\":\"\",\"note\":\"\",\"hidden\":false,\"thumbnail\":\"\"}"
+        }
+      },
+      {
+        "id": "8de952cc-1746-4a9d-8d61-507f60a27a60",
+        "createdAt": "2026-11-07T07:05:35.788Z",
+        "updatedAt": "2026-11-07T08:08:14.693Z",
+        "title": "バイオ７　",
+        "overlayText": "",
+        "date": "2026-11-07",
+        "startTime": "21:00",
+        "scheduledAt": "2026-11-07T21:00",
+        "platform": "YouTube",
+        "thumbnailPath": "C:\\Users\\meme0\\AppData\\Roaming\\ENJOY VTUBER\\data\\files\\streams\\ktx_サムネイル_2026-11-07_13-40-01_2026-11-07T07-05-51-958Z-000000.jpg",
+        "streamUrl": "",
+        "status": "planned",
+        "genre": "",
+        "purpose": "",
+        "thumbnail": "",
+        "announcement": "",
+        "keywords": "",
+        "checklist": {
+          "frame": false,
+          "thumbnail": false,
+          "title": false,
+          "rights": false,
+          "obs": false,
+          "rules": false,
+          "standby": false
+        },
+        "metrics": {
+          "peakViewers": "",
+          "likes": "",
+          "playbacks": "",
+          "avgWatchTime": "",
+          "comments": "",
+          "ctr": "",
+          "retention": "",
+          "gifts": ""
+        },
+        "kpt": {
+          "keep": "",
+          "problem": "",
+          "try": ""
+        },
+        "memo": "",
+        "analyticsId": "",
+        "sync": {
+          "id": "c98e1ff4-ce53-47b3-bb6c-1e967c731ee8",
+          "updatedAt": "2026-11-07T08:08:15.148Z",
+          "hash": "{\"date\":\"2026-11-07\",\"startTime\":\"21:00\",\"title\":\"バイオ７　\",\"platform\":\"YouTube\",\"url\":\"\",\"note\":\"\",\"hidden\":false,\"thumbnail\":\"C:\\\\Users\\\\meme0\\\\AppData\\\\Roaming\\\\ENJOY VTUBER\\\\data\\\\files\\\\streams\\\\ktx_サムネイル_2026-11-07_13-40-01_2026-11-07T07-05-51-958Z-000000.jpg\"}"
+        }
+      },
+      {
+        "id": "6d11a59a-e254-4d15-843f-a47f76d641f0",
+        "createdAt": "2026-10-24T11:33:19.137Z",
+        "updatedAt": "2026-10-24T11:34:06.282Z",
+        "title": "【飲酒PEX】w/えのき、りゅぺ",
+        "overlayText": "",
+        "date": "2026-10-31",
+        "startTime": "21:00",
+        "scheduledAt": "2026-10-31T21:00",
+        "platform": "YouTube",
+        "thumbnailPath": "",
+        "streamUrl": "",
+        "status": "planned",
+        "genre": "ゲーム",
+        "purpose": "",
+        "thumbnail": "",
+        "announcement": "",
+        "keywords": "",
+        "checklist": {
+          "frame": false,
+          "thumbnail": false,
+          "title": false,
+          "rights": false,
+          "obs": false,
+          "rules": false,
+          "standby": false
+        },
+        "metrics": {
+          "peakViewers": "",
+          "likes": "",
+          "playbacks": "",
+          "avgWatchTime": "",
+          "comments": "",
+          "ctr": "",
+          "retention": "",
+          "gifts": ""
+        },
+        "kpt": {
+          "keep": "",
+          "problem": "",
+          "try": ""
+        },
+        "memo": "",
+        "analyticsId": "",
+        "sync": {
+          "id": "c5407d35-3ec0-4024-97aa-28018af21f6a",
+          "updatedAt": "2026-10-24T11:34:06.745Z",
+          "hash": "{\"date\":\"2026-10-31\",\"startTime\":\"21:00\",\"title\":\"【飲酒PEX】w/えのき、りゅぺ\",\"platform\":\"YouTube\",\"url\":\"\",\"note\":\"\",\"hidden\":false,\"thumbnail\":\"\"}"
+        }
+      }
+    ]
+  }
+}

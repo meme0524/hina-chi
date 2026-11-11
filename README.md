@@ -45,7 +45,7 @@ npm run preview
 | --- | --- |
 | お知らせ | `src/data/news.js`（新しいものを上に追加。トップは最新 4 件） |
 | イベント実績 | `src/data/events.js`（新しいものを上に追加。トップは最新 3 件） |
-| 配信予定 | `src/data/schedule.js`（`SCHEDULE_REGULAR` が定例、`SCHEDULE_SPECIALS` が単発。日付を過ぎた単発は非表示） |
+| 配信予定 | `src/data/streams.json`（書き出した JSON でこのファイルを置き換える。カレンダーにはタイトルと開始時刻だけを出す）。定例枠の文言は `src/data/schedule.js` |
 | ギャラリー | 画像を `public/image/gallery/` に置き、`src/data/gallery.js` に追加 |
 | 配信企画 | `src/data/plans.js` |
 | 企画ページのパスワード | `src/data/plans-auth.js` のコメントにある手順でハッシュを差し替える |

@@ -2,12 +2,9 @@ import { SCHEDULE_REGULAR, SCHEDULE_SPECIALS } from "../data/schedule.js";
 
 (function () {
   var DOW = ["日", "月", "火", "水", "木", "金", "土"];
-  var TYPE_LABELS = {
-    collab: "コラボ",
-    event: "イベント",
-    extra: "特別",
-  };
   var DEFAULT_END = "24:00";
+  var viewYear = 0;
+  var viewMonth = 0;
 
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
@@ -44,13 +41,6 @@ import { SCHEDULE_REGULAR, SCHEDULE_SPECIALS } from "../data/schedule.js";
     return (date.getMonth() + 1) + "/" + date.getDate() + "（" + DOW[date.getDay()] + "）";
   }
 
-  function formatKey(key) {
-    var p = String(key).split("-");
-    if (p.length !== 3) return escapeHtml(key);
-    var d = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
-    return formatMonthDay(d);
-  }
-
   function dayLabel(date, now) {
     if (dateKey(date) === dateKey(now)) return "今日";
     if (dateKey(date) === dateKey(addDays(now, 1))) return "明日";
@@ -67,9 +57,18 @@ import { SCHEDULE_REGULAR, SCHEDULE_SPECIALS } from "../data/schedule.js";
     return (SCHEDULE_SPECIALS || []).filter(function (s) { return s && s.date && s.title; });
   }
 
-  function isActiveSpecial(s, today) {
-    var end = s.endDate || s.date;
-    return end >= today;
+  function getStreams() {
+    var list = window.__SCHEDULE_STREAMS__;
+    if (!Array.isArray(list)) return [];
+    return list.filter(function (s) {
+      return s && s.date && s.title;
+    }).map(function (s) {
+      return {
+        date: s.date,
+        title: String(s.title).trim(),
+        time: s.time || "",
+      };
+    });
   }
 
   function slotForDay(regular, day) {
@@ -114,8 +113,59 @@ import { SCHEDULE_REGULAR, SCHEDULE_SPECIALS } from "../data/schedule.js";
     return null;
   }
 
-  function getNextStreamMessage(now, regular, specials) {
+  function parseDateKey(key) {
+    var p = String(key).split("-");
+    return new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+  }
+
+  function compareDated(a, b) {
+    if (a.date !== b.date) return a.date < b.date ? -1 : 1;
+    var byTime = (a.time || "").localeCompare(b.time || "");
+    if (byTime !== 0) return byTime;
+    return (a.endDate || "").localeCompare(b.endDate || "");
+  }
+
+  function nextDatedItem(items, now) {
     var today = dateKey(now);
+    var minutes = now.getHours() * 60 + now.getMinutes();
+    var end = parseMinutes(DEFAULT_END);
+    var upcoming = items.filter(function (s) {
+      return s && s.date && s.title && (s.endDate || s.date) >= today;
+    }).sort(compareDated);
+
+    for (var i = 0; i < upcoming.length; i++) {
+      var s = upcoming[i];
+      if (s.endDate && s.date <= today && s.endDate >= today) {
+        return { item: s, live: true };
+      }
+      if (s.date > today) return { item: s, live: false };
+      var start = parseMinutes(s.time);
+      if (start != null && minutes >= start && (end == null || minutes < end)) {
+        return { item: s, live: true };
+      }
+      if (start == null || minutes < start) return { item: s, live: false };
+    }
+    return null;
+  }
+
+  function getNextStreamMessage(now, regular, specials, streams) {
+    var today = dateKey(now);
+    var dated = nextDatedItem(streams.concat(specials), now);
+    if (dated) {
+      var item = dated.item;
+      var timeText = item.time ? " " + item.time + "〜" : "";
+      if (dated.live && item.date === today) {
+        return { text: "いま配信中：" + item.title + timeText, live: true };
+      }
+      if (item.date === today) {
+        return { text: "今日：" + item.title + timeText, live: false };
+      }
+      return {
+        text: "次の配信：" + dayLabel(parseDateKey(item.date), now) + timeText + " " + item.title,
+        live: false,
+      };
+    }
+
     var slot = slotForDay(regular, now.getDay());
     var collab = todaysCollab(specials, today);
 
@@ -166,65 +216,114 @@ import { SCHEDULE_REGULAR, SCHEDULE_SPECIALS } from "../data/schedule.js";
     }).join("\n");
   }
 
-  function renderSpecials(specials, today) {
-    var heading = document.getElementById("schedule-specials-heading");
-    var list = document.getElementById("schedule-specials");
-    if (!list) return;
-
-    var upcoming = specials.filter(function (s) { return isActiveSpecial(s, today); });
-    upcoming.sort(function (a, b) {
-      if (a.date === b.date) return (a.endDate || "").localeCompare(b.endDate || "");
-      return a.date.localeCompare(b.date);
-    });
-
-    if (upcoming.length === 0) {
-      list.innerHTML = "";
-      if (heading) heading.hidden = true;
-      return;
-    }
-
-    if (heading) heading.hidden = false;
-    list.innerHTML = upcoming.map(function (s) {
-      var type = s.type && TYPE_LABELS[s.type] ? s.type : "collab";
-      var badge = "<span class=\"schedule-special-badge schedule-special-badge-" + type + "\">" + TYPE_LABELS[type] + "</span>";
-      var dateLabel = s.endDate
-        ? formatKey(s.date) + "〜" + formatKey(s.endDate)
-        : formatKey(s.date);
-      var time = s.time ? "<span class=\"schedule-special-time\">" + escapeHtml(s.time) + "〜</span>" : "";
-      var desc = s.desc ? "<p class=\"schedule-special-desc\">" + escapeHtml(s.desc) + "</p>" : "";
-      var ongoing = s.endDate && s.date <= today && s.endDate >= today
-        ? "<span class=\"schedule-special-now\">開催中</span>"
-        : "";
-
-      return [
-        "<li class=\"schedule-special-item\">",
-        "  <time class=\"schedule-special-date\" datetime=\"" + escapeHtml(s.date) + "\">" + dateLabel + "</time>",
-        "  " + badge,
-        "  <div class=\"schedule-special-body\">",
-        "    <p class=\"schedule-special-title\">" + ongoing + escapeHtml(s.title) + time + "</p>",
-        desc,
-        "  </div>",
-        "</li>",
-      ].join("\n");
-    }).join("\n");
+  function coversDate(item, key) {
+    if (!item || !item.date || !item.title) return false;
+    var end = item.endDate || item.date;
+    return item.date <= key && end >= key;
   }
 
-  function updateNextStream(now, regular, specials) {
+  function eventLabel(item) {
+    var title = String(item.title).trim();
+    return item.time ? item.time + " " + title : title;
+  }
+
+  function renderCalendar(items, today) {
+    var label = document.getElementById("schedule-cal-label");
+    var grid = document.getElementById("schedule-calendar-grid");
+    if (!grid || !viewYear || !viewMonth) return;
+    if (label) label.textContent = viewYear + "年 " + viewMonth + "月";
+
+    var first = new Date(viewYear, viewMonth - 1, 1);
+    var lead = (first.getDay() + 6) % 7;
+    var count = new Date(viewYear, viewMonth, 0).getDate();
+    var cells = lead + count;
+    var tail = (7 - (cells % 7)) % 7;
+    var html = [];
+
+    for (var blank = 0; blank < lead; blank++) {
+      html.push("<div class=\"schedule-cal-day is-pad\" aria-hidden=\"true\"></div>");
+    }
+
+    for (var day = 1; day <= count; day++) {
+      var date = new Date(viewYear, viewMonth - 1, day);
+      var key = dateKey(date);
+      var dow = date.getDay();
+      var classes = ["schedule-cal-day"];
+      if (dow === 6) classes.push("is-sat");
+      if (dow === 0) classes.push("is-sun");
+      if (key === today) classes.push("is-today");
+      var dayItems = items.filter(function (item) { return coversDate(item, key); }).sort(compareDated);
+      var labels = dayItems.map(eventLabel);
+      var events = dayItems.map(function (item) {
+        var text = eventLabel(item);
+        return "<p class=\"schedule-cal-event\" title=\"" + escapeHtml(text) + "\">" + escapeHtml(text) + "</p>";
+      }).join("");
+      var aria = viewMonth + "月" + day + "日" + (labels.length ? "、" + labels.join("、") : "");
+      html.push(
+        "<div class=\"" + classes.join(" ") + "\" role=\"gridcell\" aria-label=\"" + escapeHtml(aria) + "\">" +
+          "<span class=\"schedule-cal-num\">" + day + "</span>" +
+          events +
+        "</div>"
+      );
+    }
+
+    for (var pad = 0; pad < tail; pad++) {
+      html.push("<div class=\"schedule-cal-day is-pad\" aria-hidden=\"true\"></div>");
+    }
+
+    grid.innerHTML = html.join("");
+  }
+
+  function shiftMonth(delta) {
+    viewMonth += delta;
+    if (viewMonth < 1) {
+      viewMonth = 12;
+      viewYear -= 1;
+    } else if (viewMonth > 12) {
+      viewMonth = 1;
+      viewYear += 1;
+    }
+  }
+
+  function updateNextStream(now, regular, specials, streams) {
     var el = document.getElementById("next-stream-text");
     var box = document.getElementById("next-stream");
     if (!el || !box) return;
-    var result = getNextStreamMessage(now, regular, specials);
+    var result = getNextStreamMessage(now, regular, specials, streams);
     el.textContent = result.text;
     box.classList.toggle("next-stream-live", result.live);
+  }
+
+  function paintCalendar() {
+    var now = getJSTDate();
+    renderCalendar(getSpecials().concat(getStreams()), dateKey(now));
   }
 
   function init() {
     var regular = getRegular();
     var specials = getSpecials();
+    var streams = getStreams();
     var now = getJSTDate();
+    viewYear = now.getFullYear();
+    viewMonth = now.getMonth() + 1;
     renderRegular(regular);
-    renderSpecials(specials, dateKey(now));
-    updateNextStream(now, regular, specials);
+    paintCalendar();
+    updateNextStream(now, regular, specials, streams);
+
+    var prev = document.getElementById("schedule-cal-prev");
+    var next = document.getElementById("schedule-cal-next");
+    if (prev) {
+      prev.addEventListener("click", function () {
+        shiftMonth(-1);
+        paintCalendar();
+      });
+    }
+    if (next) {
+      next.addEventListener("click", function () {
+        shiftMonth(1);
+        paintCalendar();
+      });
+    }
   }
 
   if (document.readyState === "loading") {
@@ -234,6 +333,6 @@ import { SCHEDULE_REGULAR, SCHEDULE_SPECIALS } from "../data/schedule.js";
   }
 
   setInterval(function () {
-    updateNextStream(getJSTDate(), getRegular(), getSpecials());
+    updateNextStream(getJSTDate(), getRegular(), getSpecials(), getStreams());
   }, 60 * 1000);
 })();
