@@ -998,6 +998,11 @@ body.gallery-lightbox-open {
   text-overflow: ellipsis;
 }
 
+.schedule-cal-event.is-span {
+  background: var(--orange-100);
+  color: var(--orange-700);
+}
+
 .schedule-cal-day.is-today .schedule-cal-num {
   color: var(--orange-700);
 }

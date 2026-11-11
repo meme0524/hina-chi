@@ -54,7 +54,20 @@ import { SCHEDULE_REGULAR, SCHEDULE_SPECIALS } from "../data/schedule.js";
   }
 
   function getSpecials() {
-    return (SCHEDULE_SPECIALS || []).filter(function (s) { return s && s.date && s.title; });
+    return (SCHEDULE_SPECIALS || []).map(function (s) {
+      if (!s || !s.title) return null;
+      var start = s.startDate || s.date;
+      if (!start) return null;
+      var end = s.endDate || start;
+      if (end < start) end = start;
+      return {
+        date: start,
+        endDate: end > start ? end : "",
+        type: s.type || "",
+        title: String(s.title).trim(),
+        time: s.time || "",
+      };
+    }).filter(function (s) { return s; });
   }
 
   function getStreams() {
@@ -135,9 +148,7 @@ import { SCHEDULE_REGULAR, SCHEDULE_SPECIALS } from "../data/schedule.js";
 
     for (var i = 0; i < upcoming.length; i++) {
       var s = upcoming[i];
-      if (s.endDate && s.date <= today && s.endDate >= today) {
-        return { item: s, live: true };
-      }
+      if (s.endDate && s.endDate > s.date) continue;
       if (s.date > today) return { item: s, live: false };
       var start = parseMinutes(s.time);
       if (start != null && minutes >= start && (end == null || minutes < end)) {
@@ -227,6 +238,14 @@ import { SCHEDULE_REGULAR, SCHEDULE_SPECIALS } from "../data/schedule.js";
     return item.time ? item.time + " " + title : title;
   }
 
+  function eventTitle(item) {
+    var label = eventLabel(item);
+    if (item.endDate && item.endDate > item.date) {
+      return label + "（" + item.date + "〜" + item.endDate + "）";
+    }
+    return label;
+  }
+
   function renderCalendar(items, today) {
     var label = document.getElementById("schedule-cal-label");
     var grid = document.getElementById("schedule-calendar-grid");
@@ -256,7 +275,9 @@ import { SCHEDULE_REGULAR, SCHEDULE_SPECIALS } from "../data/schedule.js";
       var labels = dayItems.map(eventLabel);
       var events = dayItems.map(function (item) {
         var text = eventLabel(item);
-        return "<p class=\"schedule-cal-event\" title=\"" + escapeHtml(text) + "\">" + escapeHtml(text) + "</p>";
+        var span = item.endDate && item.endDate > item.date;
+        var cls = "schedule-cal-event" + (span ? " is-span" : "");
+        return "<p class=\"" + cls + "\" title=\"" + escapeHtml(eventTitle(item)) + "\">" + escapeHtml(text) + "</p>";
       }).join("");
       var aria = viewMonth + "月" + day + "日" + (labels.length ? "、" + labels.join("、") : "");
       html.push(

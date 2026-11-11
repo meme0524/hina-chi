@@ -1,6 +1,8 @@
 // 配信スケジュール。
 // REGULAR  … 毎週の定例枠（days: 0=日, 1=月, …, 6=土）
-// SPECIALS … コラボ・イベントなど。終わったものは自動で非表示になります。
+// SPECIALS … コラボは date の1日。
+//            type: "event" は startDate と endDate（YYYY-MM-DD、終了日を含む）。
+//            endDate を省略すると startDate の1日だけになる。
 export const SCHEDULE_REGULAR = [
   {
     label: "定例配信",
@@ -12,8 +14,9 @@ export const SCHEDULE_REGULAR = [
 
 export const SCHEDULE_SPECIALS = [
   {
-    date: "2026-11-16",
     type: "event",
+    startDate: "2026-11-16",
+    endDate: "2026-11-22",
     title: "CHARGESPOTサイネージ広告掲載イベント！",
     desc: "1周年記念イベント！",
   },
@@ -46,9 +49,9 @@ export const SCHEDULE_SPECIALS = [
     title: "夜宵ねねさん枠 歌フェス",
   },
   {
-    date: "2026-09-14",
-    endDate: "2026-09-20",
     type: "event",
+    startDate: "2026-09-14",
+    endDate: "2026-09-20",
     title: "【達成で全員掲載】渋谷発REALITYトレイン！",
     desc: "応援よろしくお願いします！",
   },
